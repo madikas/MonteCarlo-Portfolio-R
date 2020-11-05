@@ -5,6 +5,7 @@ library(caTools)
 library(dplyr)
 library(PerformanceAnalytics)
 library(ggplot2)
+library ( plotly)
 
 #Vector of Stock Tickers
 tickers=c("GOOGL", "AMZN", "PFE", "JPM", "CVX", "BA", "FAST", "INTC", 
