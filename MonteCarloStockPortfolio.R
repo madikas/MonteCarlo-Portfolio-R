@@ -42,86 +42,62 @@ effFrontier = portfolioFrontier(stockReturns, constraints = "LongOnly")
 #8 - Plot Sharpe Ratio
 plot(effFrontier, 1)
                                 
+# 1.Simulating Daily Returns for Individual Stock (Normal Distribution)
 
-# Calculate mean returns and covariance matrix for all 10 stocks 
-
-meanReturns=colMeans(stockReturns)
-covariancematrix=cov(stockReturns)*253
-
-#Monte Carlo simulation with 5000 simulations of different weights for our portfolio
-
-#Part 1 - Creating Empty Vectors and Matrix for 
-  #Simulation of 5000 different portfolios with different weights
+  #Parameters for the geometric mean & std dev of daily return for stock 
+  m <- 0.0003
+  s <- 0.0098
+  tradingdays<-253
   
-  num_simulations=5000
+  #Vector of daily returns
   
-  #Matrix to store weights 
-  all_wts= matrix(nrow=num_simulations, ncol=length(tickers))
+  set.seed(123)
   
-  #Vector to store portfolio returns
-  port_returns=vector('numeric',length=num_simulations)
+  dailyreturns_norm <-rnorm(n=tradingdays,m,s)
+  mean(dailyreturns_norm)
+  sd(dailyreturns_norm)
+  plot(density(dailyreturns_norm))
   
-  #Vector to store std dev
-  port_risk=vector('numeric',length=num_simulations)
-  
-  #Vector to store SharpeRatio
-  sharpe_ratio=vector('numeric',length=num_simulations)
-  
-#Part 2 - MonteCarlo Simulation
-  
-  set.seed(500)
-  for (i in seq_along(port_returns)){
-    weights<-runif(length(tickers))
-    weights<-weights/sum(weights)
-    
-    all_wts[i,]<- weights
-    
-    port_ret<- sum(weights*meanReturns)
-    port_ret <- (port_ret+1)^253 -1
-    
-    port_returns[i]<-port_ret
-    
-    port_sd<-sqrt(t(weights)%*%(covariancematrix%*%weights))
-    port_risk[i]<-port_sd
-    
-    sr<-port_ret/port_sd
-   sharpe_ratio[i]<-sr
+  # Generating Daily Price from Returns 
+  STK_PRC <- 10
+  r <-dailyreturns_norm
+  stock_prices_norm <- c()
+  for (i in seq(tradingdays))
+  {
+    STK_PRC <- STK_PRC*(1+r[i])
+    stock_prices_norm <- c(stock_prices_norm,STK_PRC)
     
   }
-    
-#Storing all the values in a table 
+  print(stock_prices_norm)
+
+# 2.Simulating Daily Returns for Individual Stock (LogNormal Distribution)
+
+  set.seed(123)
   
-  portfolio_values=data.frame(all_wts,Return=port_returns,Risk=port_risk,SharpeRatio=sharpe_ratio)
+  #Parameters for the geometric mean & std dev of daily return for stock 
+  m <- 0.0003
+  s <- 0.0098
   
-  #Looking at the first values in our matrix
-  head(portfolio_values)
+  meanlog<-log(m^2/sqrt(s^2+m^2))
+  stdlog<- sqrt(log(1+(s^2/m^2)))
   
-  #Important Portfolios
+  #Vector of daily returns 
+  dailyreturns<- rlnorm(n=tradingdays,meanlog,stdlog)
+  mean(dailyreturns)
+  sd(dailyreturns)
+  plot(density(dailyreturns))
   
-  min_var <- portfolio_values[which.min(portfolio_values$Risk),]
-  max_sr <- portfolio_values[which.max(portfolio_values$SharpeRatio),]
+  # Generating Daily Price from Returns 
+  STK_PRC <- 10
+  r <-dailyreturns
+  stock_prices <- c()
+  for (i in seq(tradingdays))
+  {
+    STK_PRC <- STK_PRC*(1+r[i])
+    stock_prices <- c(stock_prices,STK_PRC)
+    print(stock_prices)
+  }
+
+#3. Creating a Portfolio of 5 Stocks 
 
 
-#Plot the Efficient Frontier
-  
-  efficientfrontier <- portfolio_values %>%
-    ggplot(aes(x = Risk, y = Return, color = SharpeRatio)) +
-    geom_point() +
-    theme_classic() +
-    scale_y_continuous(labels = scales::percent) +
-    scale_x_continuous(labels = scales::percent) +
-    labs(x = 'Annualized Risk',
-         y = 'Annualized Returns',
-         title = " Efficient Frontier") +
-    geom_point(aes(x = Risk,
-                   y = Return), data = min_var, color = 'red') +
-    geom_point(aes(x = Risk,
-                   y = Return), data = max_sr, color = 'red') +
-    annotate('text', x = 0.24, y = 0.25, label = "Tangency Portfolio") +
-    annotate('text', x =0.21 , y =0.05 , label = "Minimum variance portfolio") +
-    annotate(geom = 'segment', x = 0.19, xend = 0.21,  y = 0.09, 
-             yend = 0.07, color = 'red', arrow = arrow(type = "open")) +
-    annotate(geom = 'segment', x = 0.212, xend = 0.23,  y = 0.23, 
-             yend = 0.235, color = 'red', arrow = arrow(type = "open"))
-  
-  ggplotly(efficientfrontier)
