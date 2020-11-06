@@ -45,7 +45,7 @@ plot(effFrontier, 1)
 # 1.Simulating Daily Returns for Individual Stock (Normal Distribution)
 
   #Parameters for the geometric mean & std dev of daily return for stock 
-  m <- 0.0003
+  m <- 0.003
   s <- 0.0098
   tradingdays<-253
   
@@ -75,7 +75,7 @@ plot(effFrontier, 1)
   set.seed(123)
   
   #Parameters for the geometric mean & std dev of daily return for stock 
-  m <- 0.0003
+  m <- 0.003
   s <- 0.0098
   
   meanlog<-log(m^2/sqrt(s^2+m^2))
