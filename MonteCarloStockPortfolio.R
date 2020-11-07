@@ -6,6 +6,7 @@ library(dplyr)
 library(PerformanceAnalytics)
 library(ggplot2)
 library ( plotly)
+library(RiskPortfolios)
 
 #Vector of Stock Tickers
 tickers=c("GOOGL", "AMZN", "PFE", "JPM", "CVX", "BA", "FAST", "INTC", 
@@ -27,8 +28,20 @@ colnames(stockPrices) = tickers
 stockReturns = na.omit(ROC(stockPrices, type="discrete"))
 stockReturns = as.timeSeries(stockReturns)
 
+#MeanReturns and Covariance matrix
+meanReturns=colMeans(stockReturns)
+covariancematrix=cov(stockReturns)*tradingdays
+
 #efficient frontier
 effFrontier = portfolioFrontier(stockReturns, constraints = "LongOnly")
+
+#Weights of Optimal Portfolios
+#(mean variance, min variance, max diversificaiton)
+
+meanvar=optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo'))
+minvar=optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo'))
+maxdiv=optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdiv',constraint='lo'))
+maxdec=optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdec',constraint='lo'))
 
 #Plot efficient frontier
 #Plot options fportfolio
