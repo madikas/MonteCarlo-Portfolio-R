@@ -107,19 +107,35 @@ D_ret = function(x) na.omit(ROC(x, type="discrete"))
 #Monte Carlo Simulation for portfolios based on tradingdays, numsimulations and
 #scenarios
 portfolio_simulation <- function(simulations,tradingdays, scenario) {
-  portfolio_returns = data.frame(meanvar=NA, minvar= NA, maxdiv=NA, maxdec=NA)
+  portfolio_returns = data.frame(meanvarReturn=NA, meanvarVariance=NA, meanvarSharpe=NA,  
+                                 minvarReturn= NA, minvarVariance=NA, minvarSharpe=NA,
+                                 maxdivReturn=NA, maxdivVariance=NA, maxdivSharpe=NA,
+                                 maxdecReturn=NA, maxdecVariance=NA, maxdecSharpe=NA)
   newrow = NULL
   for (i in seq(simulations)) {
     stockPrices = scenario_stock_generation(tradingdays, scenario)
     stockReturns = apply(stockPrices, 2, D_ret)
     stockReturns = as.timeSeries(stockReturns)
-    meanReturns=colMeans(stockReturns)
-    covariancematrix=cov(stockReturns)*tradingdays
-    meanvar=optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo'))
-    minvar=optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo'))
-    maxdiv=optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdiv',constraint='lo'))
-    maxdec=optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdec',constraint='lo'))    
-    newrow = c(meanvar, minvar, maxdiv, maxdec)
+    meanReturns=as.matrix(colMeans(stockReturns))
+    covariancematrix=as.matrix(cov(stockReturns)*tradingdays)
+    meanvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo')))
+    minvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo')))
+    maxdiv=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdiv',constraint='lo')))
+    maxdec=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdec',constraint='lo')))
+    meanvarReturn =  t(meanvar) %*% meanReturns
+    meanvarVariance =  t(meanvar) %*% covariancematrix %*% meanReturns
+    meanvarSharpe = meanvarReturn / sqrt(meanvarVariance)
+    minvarReturn =  t(minvar) %*% meanReturns
+    minvarVariance =  t(minvar) %*%  covariancematrix %*% meanReturns
+    minvarSharpe = minvarReturn / sqrt(minvarVariance)
+    maxdivReturn =  t(maxdiv) %*% meanReturns
+    maxdivVariance =  t(maxdiv) %*%  covariancematrix %*% meanReturns
+    maxdivSharpe = maxdivReturn / sqrt(maxdivVariance)
+    maxdecReturn =  t(maxdec) %*% meanReturns
+    maxdecVariance =  t(maxdec) %*%  covariancematrix %*% meanReturns
+    maxdecSharpe = maxdecReturn / sqrt(maxdecVariance)
+    newrow = c(meanvarReturn,meanvarVariance, meanvarSharpe, minvarReturn, minvarVariance, minvarSharpe,
+               maxdivReturn,maxdivVariance, maxdivSharpe, maxdecReturn, maxdecVariance, maxdecSharpe)
     portfolio_returns = rbind(portfolio_returns[1:i,],newrow,portfolio_returns[-(1:i),])
   }
   return(portfolio_returns)
