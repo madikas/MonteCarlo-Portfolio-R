@@ -36,6 +36,7 @@ generate_distribution <- function(number, type) {
   # Generating Daily Price from Returns 
   STK_PRC <- runif(1, min = minimumPrice, max = maximumPrice)
   r <-dailyreturns
+  stock_prices = c()
   for (i in seq(tradingdays))
   {
     STK_PRC <- STK_PRC*(1+r[i])
