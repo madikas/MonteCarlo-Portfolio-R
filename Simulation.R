@@ -1,15 +1,35 @@
+library(ggplot2)
 library(RiskPortfolios)
 library(timeSeries)
 library(fPortfolio)
 library(caTools)
 library(dplyr)
 library(PerformanceAnalytics)
+library(TTR)
+# Local functions
+cbrt <- function (x) {
+  sign(x) * abs(x)^(1/3)
+}
+#U-quadratic shape distributed returns (with paramets a = -b) for 253 days
+ruquad <- function(upper_bound , nsim) {
+  b <- upper_bound
+  a <- -b
+  Beta <- (b+a)/2
+  Alpha <- 12/((b-a)^3)
+  unif <- runif(nsim , min = 0 , max = 1)
+  df_unif <- as.data.frame(unif)
+  df_uquad <- within(df_unif ,x <- (((3*unif)/Alpha)-((Beta-a)^3)))
+  df_uquad <- apply(df_uquad , 2 , cbrt)
+  uquad_ret <- df_uquad[,2]
+  return(uquad_ret)
+}
 #Distribution generation of stock returns for a specified number of days 
 #and type(normal, lognormal, exponential)
 generate_distribution <- function(number, type) {
   tradingdays<-number
   m <- runif(1, min= 0.001, max = 0.05)
   s <- runif(1, min=0.000001, max = 0.05)
+  up <- runif(1 , min=0.03 , max = 0.1)
   lambda = runif(1, min=25, max=50)
   dailyreturns = c()
   minimumPrice = 0.001
@@ -28,6 +48,10 @@ generate_distribution <- function(number, type) {
   } else if(type == "exponential") {
     maximumPrice = 0.15
     dailyreturns = rexp(n=tradingdays, rate = lambda )
+    mean(dailyreturns)
+    sd(dailyreturns)
+  } else if(type == "uquad") {
+    dailyreturns = ruquad(up ,tradingdays)
     mean(dailyreturns)
     sd(dailyreturns)
   } else {
@@ -63,6 +87,9 @@ scenario_stock_generation <- function(tradingdays, scenario) {
       } else if(ticker == "C") {
         stockPrices = cbind(stockPrices,
                             generate_distribution(tradingdays, "lognormal"))
+      } else if(ticker == "D") {
+        stockPrices = cbind(stockPrices,
+                            generate_distribution(tradingdays, "uquad"))
       } else {
         stockPrices = cbind(stockPrices,
                             generate_distribution(tradingdays, "normal"))
@@ -73,4 +100,27 @@ scenario_stock_generation <- function(tradingdays, scenario) {
   }
   colnames(stockPrices) = tickers
   return(stockPrices)
+}
+
+#Rate of change calculation
+D_ret = function(x) na.omit(ROC(x, type="discrete"))
+#Monte Carlo Simulation for portfolios based on tradingdays, numsimulations and
+#scenarios
+portfolio_simulation <- function(simulations,tradingdays, scenario) {
+  portfolio_returns = data.frame(meanvar=NA, minvar= NA, maxdiv=NA, maxdec=NA)
+  newrow = NULL
+  for (i in seq(simulations)) {
+    stockPrices = scenario_stock_generation(tradingdays, scenario)
+    stockReturns = apply(stockPrices, 2, D_ret)
+    stockReturns = as.timeSeries(stockReturns)
+    meanReturns=colMeans(stockReturns)
+    covariancematrix=cov(stockReturns)*tradingdays
+    meanvar=optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo'))
+    minvar=optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo'))
+    maxdiv=optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdiv',constraint='lo'))
+    maxdec=optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdec',constraint='lo'))    
+    newrow = c(meanvar, minvar, maxdiv, maxdec)
+    portfolio_returns = rbind(portfolio_returns[1:i,],newrow,portfolio_returns[-(1:i),])
+  }
+  return(portfolio_returns)
 }
