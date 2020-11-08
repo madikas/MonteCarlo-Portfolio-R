@@ -14,6 +14,10 @@ closing <- cbind(AMZN$AMZN.Close , GOOGL$GOOGL.Close , PFE$PFE.Close
                  BA$BA.Close , FAST$FAST.Close, INTC$INTC.Close, T$T.Close,
                  NWSA$NWSA.Close)
 
+closing <- as.data.frame(closing)
+
+write_xlsx(closing , "C:/Users/nabil/OneDrive/Bureau/M.Sc/Stat_learning")
+
 # two functions to be able to use apply on columns
 D_ret <- function(x) ROC(x , type ="discrete")
 D_ave <- function(x) mean(x) 
@@ -109,3 +113,4 @@ plot_2 <- ggplot(data=Front_1 , aes(x =Standard_deviation , y =Expected_return )
   xlab("Portfolio standard deviation") +
   ylab("Portfolio Expected return")
 plot_2
+
