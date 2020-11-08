@@ -25,10 +25,16 @@ ruquad <- function(upper_bound , nsim) {
 }
 #Distribution generation of stock returns for a specified number of days 
 #and type(normal, lognormal, exponential)
-generate_distribution <- function(number, type) {
+generate_distribution <- function(number, type, volatility) {
   tradingdays<-number
   m <- runif(1, min= 0.001, max = 0.05)
-  s <- runif(1, min=0.000001, max = 0.05)
+  if(volatility == "high") {
+    s <- runif(1, min=0.5, max = 1)
+  } else if(volatility == "low") {
+    s <- runif(1, min=0.000001, max = 0.01)
+  } else {
+    s <- runif(1, min=0.000001, max = 0.05)
+  }
   up <- runif(1 , min=0.03 , max = 0.1)
   lambda = runif(1, min=25, max=50)
   dailyreturns = c()
@@ -77,25 +83,35 @@ scenario_stock_generation <- function(tradingdays, scenario) {
   if(scenario == "allnormal") {
     for (ticker in tickers) {
       stockPrices = cbind(stockPrices,
-                          generate_distribution(tradingdays, "normal"))
+                          generate_distribution(tradingdays, "normal",""))
     }
   } else if(scenario == "mix") {
     for (ticker in tickers) {
       if(ticker == "B") {
         stockPrices = cbind(stockPrices,
-                            generate_distribution(tradingdays, "exponential"))
+                            generate_distribution(tradingdays, "exponential",""))
       } else if(ticker == "C") {
         stockPrices = cbind(stockPrices,
-                            generate_distribution(tradingdays, "lognormal"))
+                            generate_distribution(tradingdays, "lognormal",""))
       } else if(ticker == "D") {
         stockPrices = cbind(stockPrices,
-                            generate_distribution(tradingdays, "uquad"))
+                            generate_distribution(tradingdays, "uquad",""))
       } else {
         stockPrices = cbind(stockPrices,
-                            generate_distribution(tradingdays, "normal"))
+                            generate_distribution(tradingdays, "normal",""))
       }
     }
-  } else {
+  } else if(scenario=="low volatility") {
+    for (ticker in tickers) {
+      stockPrices = cbind(stockPrices,
+                          generate_distribution(tradingdays, "normal", "low"))
+    }
+  } else if(scenario=="high volatility") {
+    for (ticker in tickers) {
+      stockPrices = cbind(stockPrices,
+                          generate_distribution(tradingdays, "normal", "high"))
+    }
+  }else {
     stop("No specified scenario")
   }
   colnames(stockPrices) = tickers
