@@ -126,7 +126,8 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
   portfolio_returns = data.frame(meanvarReturn=NA, meanvarVariance=NA, meanvarSharpe=NA,  
                                  minvarReturn= NA, minvarVariance=NA, minvarSharpe=NA,
                                  maxdivReturn=NA, maxdivVariance=NA, maxdivSharpe=NA,
-                                 maxdecReturn=NA, maxdecVariance=NA, maxdecSharpe=NA)
+                                 maxdecReturn=NA, maxdecVariance=NA, maxdecSharpe=NA,
+                                 equalweightsReturn=NA, equalweightsVariance=NA, equalweightsSharpe=NA)
   newrow = NULL
   for (i in seq(simulations)) {
     stockPrices = scenario_stock_generation(tradingdays, scenario)
@@ -138,6 +139,7 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
     minvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo')))
     maxdiv=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdiv',constraint='lo')))
     maxdec=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdec',constraint='lo')))
+    equalweights = as.matrix(c(0.2,0.2,0.2,0.2,0.2))
     meanvarReturn =  t(meanvar) %*% meanReturns
     meanvarVariance =  t(meanvar) %*% covariancematrix %*% meanReturns
     meanvarSharpe = meanvarReturn / sqrt(meanvarVariance)
@@ -150,8 +152,12 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
     maxdecReturn =  t(maxdec) %*% meanReturns
     maxdecVariance =  t(maxdec) %*%  covariancematrix %*% meanReturns
     maxdecSharpe = maxdecReturn / sqrt(maxdecVariance)
+    equalweightsReturn =  t(equalweights) %*% meanReturns
+    equalweightsVariance =  t(equalweights) %*%  covariancematrix %*% meanReturns
+    equalweightsSharpe = equalweightsReturn / sqrt(equalweightsVariance)
     newrow = c(meanvarReturn,meanvarVariance, meanvarSharpe, minvarReturn, minvarVariance, minvarSharpe,
-               maxdivReturn,maxdivVariance, maxdivSharpe, maxdecReturn, maxdecVariance, maxdecSharpe)
+               maxdivReturn,maxdivVariance, maxdivSharpe, maxdecReturn, maxdecVariance, maxdecSharpe,
+               equalweightsReturn, equalweightsVariance, equalweightsSharpe)
     portfolio_returns = rbind(portfolio_returns[1:i,],newrow,portfolio_returns[-(1:i),])
   }
   return(portfolio_returns)
