@@ -4,7 +4,7 @@ source("Simulation.R")
 simulations = 1000
 tradingdays = 253
 scenario = "allnormal"
-
+set.seed(123)
 portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
 portfolio_returns
 colMeans(na.omit(portfolio_returns))
