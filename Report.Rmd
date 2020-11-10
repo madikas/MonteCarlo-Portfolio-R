@@ -4,12 +4,10 @@ authors: "Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, cache=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 source("Simulation.R")
-library(ggpubr)
-library(kableExtra)
-library(DescTools)
+library(TTR)
 simulations = 1000
 tradingdays = 253
 ```
