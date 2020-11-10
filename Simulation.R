@@ -31,7 +31,7 @@ generate_distribution <- function(number, type, volatility) {
   tradingdays<-number
   m <- runif(1, min= 0.001, max = 0.05)
   if(volatility == "high") {
-    s <- runif(1, min=0.5, max = 1)
+    s <- runif(1, min=0.05, max = 0.25)
   } else if(volatility == "low") {
     s <- runif(1, min=0.000001, max = 0.01)
   } else {
@@ -161,7 +161,7 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
                maxdivReturn,maxdivVariance, maxdivSharpe, maxdecReturn, maxdecVariance, maxdecSharpe,
                equalweightsReturn, equalweightsVariance, equalweightsSharpe)
     portfolio_returns = rbind(portfolio_returns[1:i,],newrow,portfolio_returns[-(1:i),])
-  
+    
     if (i==1) {
       stockReturns1 = as.data.frame(stockReturns)
       stockPrices1 = as.data.frame(stockPrices)
@@ -206,25 +206,10 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
         scale_color_discrete(name = "Stock Prices" , labels=c("A","B","C","D","E"))+
         labs(title = "Simulated stock price over the period of 253 trading days" , x="Trading day" , y="Stock price")+
         theme(plot.title = element_text(face="bold", hjust = 0.5))
-  
-      }
+      
     }
+  }
   
-  results <- list(portfolio_returns , p1 , p2 , p3 , p4 , p5, h2)
+  results <- list(portfolio_returns , stockPrices, p1 , p2 , p3 , p4 , p5, h2)
   return(results)
 }
-
-Colsd = function(x) sd(x)
-
-CI1 <- portfolio_simulation(1000 , 253 , "mix")
-Data1 <- as.data.frame(CI1[1])
-Data1 <- Data1[complete.cases(Data1), ]
-Port_mean <- as.data.frame(colMeans(Data1))
-Port_sd <- colSds(as.matrix(Data1[sapply(Data1, is.numeric)]))
-Port_sd <- as.data.frame(Port_sd)
-Data2 <- cbind(Port_mean , Port_sd)
-
-
- 
-
-

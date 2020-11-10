@@ -1,15 +1,15 @@
 ---
-title: "Monte_Carlo_2"
-author: "Abderezzak Amimer"
-date: "09/11/2020"
-output: html_document
+title: "Testing portfolio optimization strategies using Monte Carlo simulation methodology"
+author: "Abderezzak Amimer, Madi Kassymbekov, Stephanie Vu"
+date: "12/11/2020"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Context
+## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
