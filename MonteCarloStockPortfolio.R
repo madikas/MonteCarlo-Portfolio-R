@@ -9,28 +9,28 @@ simulations = 1000
 tradingdays = 253
 scenario = "allnormal"
 set.seed(123)
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "1")
 portfolio_returns
-allnorm_ret=na.omit(portfolio_returns)
-allnorm_mean=round(colMeans(na.omit(portfolio_returns)),6)
+allnorm_ret=na.omit(portfolio_returns[[1]])
+allnorm_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "mix"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "2")
 portfolio_returns
-mix_ret=na.omit(portfolio_returns)
-mix_ret_mean=round(colMeans(na.omit(portfolio_returns)),6)
+mix_ret=na.omit(portfolio_returns[[1]])
+mix_ret_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "low volatility"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "3")
 portfolio_returns
-lowvol_ret=na.omit(portfolio_returns)
-lowvol_mean=round(colMeans(na.omit(portfolio_returns)),6)
+lowvol_ret=na.omit(portfolio_returns[[1]])
+lowvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "high volatility"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "4")
 portfolio_returns
-highvol_ret=na.omit(portfolio_returns)
-highvol_mean=round(colMeans(na.omit(portfolio_returns)),6)
+highvol_ret=na.omit(portfolio_returns[[1]])
+highvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 
 #All Normal

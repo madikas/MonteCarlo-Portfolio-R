@@ -6,6 +6,9 @@ library(caTools)
 library(dplyr)
 library(PerformanceAnalytics)
 library(TTR)
+library(ggpubr)
+library(kableExtra)
+library(DescTools)
 # Local functions
 cbrt <- function (x) {
   sign(x) * abs(x)^(1/3)
@@ -122,7 +125,7 @@ scenario_stock_generation <- function(tradingdays, scenario) {
 D_ret = function(x) na.omit(ROC(x, type="discrete"))
 #Monte Carlo Simulation for portfolios based on tradingdays, numsimulations and
 #scenarios
-portfolio_simulation <- function(simulations,tradingdays, scenario) {
+portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
   portfolio_returns = data.frame(meanvarReturn=NA, meanvarVariance=NA, meanvarSharpe=NA,  
                                  minvarReturn= NA, minvarVariance=NA, minvarSharpe=NA,
                                  maxdivReturn=NA, maxdivVariance=NA, maxdivSharpe=NA,
@@ -159,6 +162,58 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
                maxdivReturn,maxdivVariance, maxdivSharpe, maxdecReturn, maxdecVariance, maxdecSharpe,
                equalweightsReturn, equalweightsVariance, equalweightsSharpe)
     portfolio_returns = rbind(portfolio_returns[1:i,],newrow,portfolio_returns[-(1:i),])
+    if (i==1) {
+      stockReturns1 = as.data.frame(stockReturns)
+      stockPrices1 = as.data.frame(stockPrices)
+      stockPrices1 = cbind(days=as.numeric(rownames(stockPrices1)) , stockPrices1)
+      
+      p1 <- ggplot(data = stockReturns1 , aes(x=A))+
+        geom_histogram(color="black" , fill="white")+
+        geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
+        labs(title = "Distribution of the daily returns of stock A" , x="Daily returns" , y="Frequency")+
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+      
+      p2 <- ggplot(data = stockReturns1 , aes(x=B))+
+        geom_histogram(color="black" , fill="white")+
+        geom_vline(aes(xintercept=mean(B)), color="blue", linetype="dashed",size=1) +
+        labs(title = "Distribution of the daily returns of stock B" , x="Daily returns" , y="Frequency")+
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+      
+      p3 <- ggplot(data = stockReturns1 , aes(x=C))+
+        geom_histogram(color="black" , fill="white")+
+        geom_vline(aes(xintercept=mean(C)), color="blue", linetype="dashed",size=1) +
+        labs(title = "Distribution of the daily returns of stock C" , x="Daily returns" , y="Frequency")+
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+      
+      p4 <- ggplot(data = stockReturns1 , aes(x=D))+
+        geom_histogram(color="black" , fill="white")+
+        geom_vline(aes(xintercept=mean(D)), color="blue", linetype="dashed",size=1) +
+        labs(title = "Distribution of the daily returns of stock D" , x="Daily returns" , y="Frequency")+
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+      
+      p5 <- ggplot(data = stockReturns1 , aes(x=A))+
+        geom_histogram(color="black" , fill="white")+
+        geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
+        labs(title = "Distribution of the daily returns of stock E" , x="Daily returns" , y="Frequency")+
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+      
+      h2 <- ggplot()+
+        geom_line(data=stockPrices1 , aes(x=days ,y=A ,color = "darkred")) +
+        geom_line(data=stockPrices1 , aes(x=days ,y=B ,color = "blue")) +
+        geom_line(data=stockPrices1 , aes(x=days ,y=C ,color = "green")) +
+        geom_line(data=stockPrices1 , aes(x=days ,y=D, color = "orange")) +
+        geom_line(data=stockPrices1 , aes(x=days ,y=E, color = "yellow")) +
+        scale_color_discrete(name = "Stock Prices" , labels=c("A","B","C","D","E"))+
+        labs(title = "Simulated stock price over the period of 253 trading days" , x="Trading day" , y="Stock price")+
+        theme(plot.title = element_text(face="bold", hjust = 0.5))
+      
+    }
   }
-  return(portfolio_returns)
+  figure<-ggarrange(p1,p2,p3,p4,p5,h2,
+                     ncol=3,nrow=2)
+  annotate_figure(figure,
+                  top = text_grob(paste("Portfolio of Stocks ",scenario) , color = "black", face = "bold", size = 14),
+                  fig.lab = paste("Figure ",figindex), fig.lab.face = "bold")
+  results <- list(portfolio_returns , stockPrices, figure)
+  return(results)
 }
