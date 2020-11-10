@@ -123,6 +123,7 @@ scenario_stock_generation <- function(tradingdays, scenario) {
 
 #Rate of change calculation
 D_ret = function(x) na.omit(ROC(x, type="discrete"))
+annualized_ret = function (x) (((x+1)^tradingdays)-1)
 #Monte Carlo Simulation for portfolios based on tradingdays, numsimulations and
 #scenarios
 portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
@@ -137,6 +138,7 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
     stockReturns = apply(stockPrices, 2, D_ret)
     stockReturns = as.timeSeries(stockReturns)
     meanReturns=as.matrix(colMeans(stockReturns))
+    meanReturns=apply(meanReturns , 2 , annualized_ret)
     covariancematrix=cov(stockReturns)*tradingdays
     covariancematrix= as.matrix(covariancematrix)
     meanvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo')))
