@@ -32,11 +32,11 @@ generate_distribution <- function(number, type, volatility) {
   tradingdays<-number
   m <- runif(1, min= 0.001, max = 0.05)
   if(volatility == "high") {
-    s <- runif(1, min=0.5, max = 1)
+    s <- runif(1, min=0.05, max = 0.25)
   } else if(volatility == "low") {
-    s <- runif(1, min=0.000001, max = 0.01)
+    s <- runif(1, min=0.001, max = 0.02)
   } else {
-    s <- runif(1, min=0.000001, max = 0.05)
+    s <- runif(1, min=0.01, max = 0.05)
   }
   up <- runif(1 , min=0.03 , max = 0.1)
   lambda = runif(1, min=25, max=50)
