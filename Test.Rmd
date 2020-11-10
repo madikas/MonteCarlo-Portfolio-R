@@ -1,0 +1,43 @@
+---
+  title: "Monte Carlo Simulation of Portfolio Returns for Different Optimization Strategies"
+authors: "Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu"
+output: pdf_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Context
+
+The main goal of investors when creating an asset portfolio is to obtain the most value from their constructed portfolio. A major decision in portfolio management lies in defining how to allocate funds when constructing a portfolio. Portfolio optimization is a phenomenon widely studied in finance. It consists of determining the optimal proportions of total capital invested to assign to each particular asset in the portfolio. Such a problem poses a challenge to financial investors as portfolio managers seek to define the best way to distribute capital in order to yield the most favorable portfolio returns depending on the level of risk the investor is willing to take. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets.
+
+
+Generation of Normal distribution
+```{r}
+source("Simulation.R")
+set.seed(123)
+plot(density(generate_distribution(253, "normal", "")))
+```
+Generation of Exponential Distribution
+```{r}
+source("Simulation.R")
+set.seed(123)
+plot(hist(generate_distribution(253, "exponential", "")))
+```
+Generation of U-quadratic shape Distribution
+```{r}
+source("Simulation.R")
+set.seed(123)
+plot(hist(generate_distribution(253, "uquad", "")))
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+  
+  ```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

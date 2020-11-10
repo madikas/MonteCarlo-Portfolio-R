@@ -6,7 +6,7 @@ library(RiskPortfolios)
 
 # Simulating the returns 
 
-#real cubic root of a number (r returns NaN...)
+#real cubic root of a number (r returns NaN... when we apply ^(1/3) on a negarive number)
 cbrt <- function (x) {
   sign(x) * abs(x)^(1/3)
 }
@@ -29,14 +29,12 @@ ruquad <- function(upper_bound , nsim) {
 set.seed(1995)
 ndays <- 253
 
-#Uquad distribution 
+
+#Mixed distribution scenario
+
+#Uquad distribution parameter
 a <-runif(1 , min= 1 , max = 10)
 
-
-
-
-
-
-
+#log normal distribution
 
 
