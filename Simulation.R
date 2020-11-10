@@ -168,31 +168,31 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
       stockPrices1 = cbind(days=as.numeric(rownames(stockPrices1)) , stockPrices1)
       
       p1 <- ggplot(data = stockReturns1 , aes(x=A))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
         labs(title = "Stock A return distribution" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5, size=7))
       
       p2 <- ggplot(data = stockReturns1 , aes(x=B))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(B)), color="blue", linetype="dashed",size=1) +
         labs(title = "Stock B return distribution" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5, size=7))
       
       p3 <- ggplot(data = stockReturns1 , aes(x=C))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(C)), color="blue", linetype="dashed",size=1) +
         labs(title = "Stock C return distribution" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5, size=7))
       
       p4 <- ggplot(data = stockReturns1 , aes(x=D))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(D)), color="blue", linetype="dashed",size=1) +
         labs(title = "Stock D return distribution" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5, size=7))
       
       p5 <- ggplot(data = stockReturns1 , aes(x=A))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
         labs(title = "Stock E return distribution" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5, size=7))
