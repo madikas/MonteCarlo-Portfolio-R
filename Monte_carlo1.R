@@ -1,38 +1,37 @@
 source("Simulation.R")
+#Plots for portfolio Returns 
+library(ggpubr)
+library(kableExtra)
+library(DescTools)
 #MonteCarlo simulation of portfolio strategies 
 #given different parameters(combination of distributions)
 simulations = 1000
 tradingdays = 253
 scenario = "allnormal"
 set.seed(123)
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "1")
 portfolio_returns
-allnorm_ret=data.frame(portfolio_returns)
-allnorm_mean=round(colMeans(na.omit(portfolio_returns)),6)
+allnorm_ret=na.omit(portfolio_returns[[1]])
+allnorm_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "mix"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "2")
 portfolio_returns
-mix_ret=portfolio_returns
-mix_ret_mean=round(colMeans(na.omit(portfolio_returns)),6)
+mix_ret=na.omit(portfolio_returns[[1]])
+mix_ret_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "low volatility"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "3")
 portfolio_returns
-lowvol_ret=portfolio_returns
-lowvol_mean=round(colMeans(na.omit(portfolio_returns)),6)
+lowvol_ret=na.omit(portfolio_returns[[1]])
+lowvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "high volatility"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario)
+portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "4")
 portfolio_returns
-highvol_ret=portfolio_returns
-highvol_mean=round(colMeans(na.omit(portfolio_returns)),6)
+highvol_ret=na.omit(portfolio_returns[[1]])
+highvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
-#Plots for portfolio Returns 
-
-library(ggpubr)
-library(kableExtra)
-library(DescTools)
 
 #All Normal
 a1<- ggplot(allnorm_ret, aes(x=meanvarReturn)) +
@@ -268,7 +267,7 @@ t1 %>%
 
 #Mixed
 t2=data.frame(rbind(mix_ret_mean[1:3],mix_ret_mean[4:6],mix_ret_mean[7:9],mix_ret_mean[10:12],mix_ret_mean[13:15]))
-t2=cbind(t2,allnorm_CI[,2:3])
+t2=cbind(t2,mix_CI[,2:3])
 rownames(t2)<-c("Mean Variance","Min Variance","Max Diversification","Max Decorrelation","Equal Weights")
 colnames(t2)<- c("Return (%)","Variance (%)","Sharpe", "Lower CI","Upper CI")
 t2[1:2]<-t2[1:2]*100

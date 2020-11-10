@@ -3,10 +3,12 @@ library(RiskPortfolios)
 library(timeSeries)
 library(fPortfolio)
 library(caTools)
-library(dplyr)
 library(PerformanceAnalytics)
 library(TTR)
-
+library(ggpubr)
+library(kableExtra)
+library(DescTools)
+library(Matrix)
 # Local functions
 cbrt <- function (x) {
   sign(x) * abs(x)^(1/3)
@@ -24,18 +26,17 @@ ruquad <- function(upper_bound , nsim) {
   uquad_ret <- df_uquad[,2]
   return(uquad_ret)
 }
-
 #Distribution generation of stock returns for a specified number of days 
 #and type(normal, lognormal, exponential)
 generate_distribution <- function(number, type, volatility) {
   tradingdays<-number
-  m <- runif(1, min= 0.001, max = 0.05)
+  m <- runif(1, min= -0.02, max = 0.02)
   if(volatility == "high") {
     s <- runif(1, min=0.05, max = 0.25)
   } else if(volatility == "low") {
-    s <- runif(1, min=0.000001, max = 0.01)
+    s <- runif(1, min=0.001, max = 0.02)
   } else {
-    s <- runif(1, min=0.000001, max = 0.05)
+    s <- runif(1, min=0.01, max = 0.05)
   }
   up <- runif(1 , min=0.03 , max = 0.1)
   lambda = runif(1, min=25, max=50)
@@ -124,7 +125,7 @@ scenario_stock_generation <- function(tradingdays, scenario) {
 D_ret = function(x) na.omit(ROC(x, type="discrete"))
 #Monte Carlo Simulation for portfolios based on tradingdays, numsimulations and
 #scenarios
-portfolio_simulation <- function(simulations,tradingdays, scenario) {
+portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
   portfolio_returns = data.frame(meanvarReturn=NA, meanvarVariance=NA, meanvarSharpe=NA,  
                                  minvarReturn= NA, minvarVariance=NA, minvarSharpe=NA,
                                  maxdivReturn=NA, maxdivVariance=NA, maxdivSharpe=NA,
@@ -136,32 +137,32 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
     stockReturns = apply(stockPrices, 2, D_ret)
     stockReturns = as.timeSeries(stockReturns)
     meanReturns=as.matrix(colMeans(stockReturns))
-    covariancematrix=as.matrix(cov(stockReturns)*tradingdays)
+    covariancematrix=cov(stockReturns)*tradingdays
+    covariancematrix= as.matrix(covariancematrix)
     meanvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo')))
     minvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo')))
     maxdiv=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdiv',constraint='lo')))
     maxdec=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='maxdec',constraint='lo')))
     equalweights = as.matrix(c(0.2,0.2,0.2,0.2,0.2))
     meanvarReturn =  t(meanvar) %*% meanReturns
-    meanvarVariance =  t(meanvar) %*% covariancematrix %*% meanReturns
+    meanvarVariance =  t(meanvar) %*% covariancematrix %*% meanvar
     meanvarSharpe = meanvarReturn / sqrt(meanvarVariance)
     minvarReturn =  t(minvar) %*% meanReturns
-    minvarVariance =  t(minvar) %*%  covariancematrix %*% meanReturns
+    minvarVariance =  t(minvar) %*%  covariancematrix %*% minvar
     minvarSharpe = minvarReturn / sqrt(minvarVariance)
     maxdivReturn =  t(maxdiv) %*% meanReturns
-    maxdivVariance =  t(maxdiv) %*%  covariancematrix %*% meanReturns
+    maxdivVariance =  t(maxdiv) %*%  covariancematrix %*% maxdiv
     maxdivSharpe = maxdivReturn / sqrt(maxdivVariance)
     maxdecReturn =  t(maxdec) %*% meanReturns
-    maxdecVariance =  t(maxdec) %*%  covariancematrix %*% meanReturns
+    maxdecVariance =  t(maxdec) %*%  covariancematrix %*% maxdec
     maxdecSharpe = maxdecReturn / sqrt(maxdecVariance)
     equalweightsReturn =  t(equalweights) %*% meanReturns
-    equalweightsVariance =  t(equalweights) %*%  covariancematrix %*% meanReturns
+    equalweightsVariance =  t(equalweights) %*%  covariancematrix %*% equalweights
     equalweightsSharpe = equalweightsReturn / sqrt(equalweightsVariance)
     newrow = c(meanvarReturn,meanvarVariance, meanvarSharpe, minvarReturn, minvarVariance, minvarSharpe,
                maxdivReturn,maxdivVariance, maxdivSharpe, maxdecReturn, maxdecVariance, maxdecSharpe,
                equalweightsReturn, equalweightsVariance, equalweightsSharpe)
     portfolio_returns = rbind(portfolio_returns[1:i,],newrow,portfolio_returns[-(1:i),])
-    
     if (i==1) {
       stockReturns1 = as.data.frame(stockReturns)
       stockPrices1 = as.data.frame(stockPrices)
@@ -170,46 +171,49 @@ portfolio_simulation <- function(simulations,tradingdays, scenario) {
       p1 <- ggplot(data = stockReturns1 , aes(x=A))+
         geom_histogram(color="black" , fill="white")+
         geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Distribution of the daily returns of stock A" , x="Daily returns" , y="Frequency")+
+        labs(title = "Stock A" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p2 <- ggplot(data = stockReturns1 , aes(x=B))+
         geom_histogram(color="black" , fill="white")+
         geom_vline(aes(xintercept=mean(B)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Distribution of the daily returns of stock B" , x="Daily returns" , y="Frequency")+
+        labs(title = "Stock B" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p3 <- ggplot(data = stockReturns1 , aes(x=C))+
         geom_histogram(color="black" , fill="white")+
         geom_vline(aes(xintercept=mean(C)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Distribution of the daily returns of stock C" , x="Daily returns" , y="Frequency")+
+        labs(title = "Stock C" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p4 <- ggplot(data = stockReturns1 , aes(x=D))+
         geom_histogram(color="black" , fill="white")+
         geom_vline(aes(xintercept=mean(D)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Distribution of the daily returns of stock D" , x="Daily returns" , y="Frequency")+
+        labs(title = "Stock D" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
-      p5 <- ggplot(data = stockReturns1 , aes(x=A))+
+      p5 <- ggplot(data = stockReturns1 , aes(x=E))+
         geom_histogram(color="black" , fill="white")+
-        geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Distribution of the daily returns of stock E" , x="Daily returns" , y="Frequency")+
+        geom_vline(aes(xintercept=mean(E)), color="blue", linetype="dashed",size=1) +
+        labs(title = "Stock E" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       h2 <- ggplot()+
-        geom_line(data=stockPrices1 , aes(x=days ,y=A ,color = "darkred")) +
-        geom_line(data=stockPrices1 , aes(x=days ,y=B ,color = "blue")) +
-        geom_line(data=stockPrices1 , aes(x=days ,y=C ,color = "green")) +
-        geom_line(data=stockPrices1 , aes(x=days ,y=D, color = "orange")) +
-        geom_line(data=stockPrices1 , aes(x=days ,y=E, color = "yellow")) +
-        scale_color_discrete(name = "Stock Prices" , labels=c("A","B","C","D","E"))+
-        labs(title = "Simulated stock price over the period of 253 trading days" , x="Trading day" , y="Stock price")+
+        geom_line(data=stockPrices1 , aes(x=days ,y=A ),color = "darkred") +
+        geom_line(data=stockPrices1 , aes(x=days ,y=B ),color = "blue") +
+        geom_line(data=stockPrices1 , aes(x=days ,y=C ),color = "green") +
+        geom_line(data=stockPrices1 , aes(x=days ,y=D), color = "orange") +
+        geom_line(data=stockPrices1 , aes(x=days ,y=E), color = "yellow") +
+        labs(title = "Prices over time" , x="Trading day" , y="Stock price")+
         theme(plot.title = element_text(face="bold", hjust = 0.5))
       
     }
   }
-  
-  results <- list(portfolio_returns , stockPrices, p1 , p2 , p3 , p4 , p5, h2)
+  figure<-ggarrange(p1,p2,p3,p4,p5,h2,
+                    ncol=3,nrow=2)
+  figure<-annotate_figure(figure,
+                  top = text_grob(paste("Portfolio of Stocks ",scenario) , color = "black", face = "bold", size = 14),
+                  fig.lab = paste("Figure ",figindex), fig.lab.face = "bold")
+  results <- list(portfolio_returns , stockPrices, figure)
   return(results)
 }
