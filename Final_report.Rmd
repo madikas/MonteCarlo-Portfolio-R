@@ -1,5 +1,5 @@
 ---
-title: "Testing Portfolio Otimization Strategies using Monte Carlo Simulation Methodology"
+title: "Testing Portfolio Optimization Strategies using Monte Carlo Simulation Methodology"
 authors: "Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu"
 output: pdf_document
 ---
@@ -13,7 +13,8 @@ tradingdays = 253
 ```
 
 ## Abstract
-text text
+
+Portfolio optimization consists of determining the optimal proportions of total capital to invest in each particular asset in the portfolio. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets. The optimal portfolio strategies examined in this paper are the mean variance, minimum variance, max diversification and max decorrelation portfolios. The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different daily return distributions. The portfolio scenarios were as follows: a portfolio of 5 stocks that are normally distributed, a portfolio of 5 normally distributed stocks with low volatility, a portfolio of 5 normally distributed stocks with high volatility and a portfolio of 5 different stocks with 4 different distributions. First, yearly stock returns are generated for each stock depending on the specified distribution given a set of constraints. Subsequently,  mean return and covariance matrix are generated and stored for each portfolio. A Monte Carlo simulation is utilized in order to generate 1000 different sets of portfolios for each scenario. In order to evaluate the portfolio’s performance, a confidence interval of the expected return is estimated as well as it’s variance and Sharpe ratio. Based on Monte Carlo simulations, the mean variance portfolio strategy consistently outperformed the remaining strategies under the constraints set in this study. Applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios but the high daily returns volatility.
 
 ## Introduction
 
@@ -69,7 +70,7 @@ All strategies are subject to the constraint that the sum of weights is one. Not
 
 The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different distributions. Such analysis will allow financial managers to easily choose the most favorable optimization strategy to implement when performing portfolio optimization depending on the distribution of stocks held in the portfolio.
 
-## Methadology
+## Methodology
 
 To evaluate the performance of each portfolio optimization strategy, a set of 5 stock daily returns are randomly generated for a period of 253 trading days. A set of 4 different scenarios were evaluated in order to determine what portfolio compositions perform best under each optimization strategy. The four portfolio compositions examined are as follows:
 
@@ -91,51 +92,44 @@ Once expected returns and covariance matrix is calculated for the given portfoli
 
 A specification of the criteria and constraints for each scenario tested is described below.  
 
+```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
+figure
+```
+
+```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
+figure_0
+```
 ## Scenario 1: All Normally Distributed Stock Returns  
 
 
-```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
-plot1
-```
-
-text text
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
 figure1
+
 ```
   
-text text
+
 ```{r, echo=FALSE , warning=FALSE}
 t1
 ```
   
 ## Scenario 2: All Normally Distributed Stock Returns with low volatility  
-  
-```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
-plot3
-```
 
-text text  
+
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
 figure3
 ```
 
-text text  
+ 
 ```{r , echo=FALSE , warning=FALSE}
 t3
 ```
 
 ## Scenario 3: All Normally Distributed Stock Returns with high volatility  
-text text   
-```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
-plot4
-```
-  
-text text  
+
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
 figure4
 ```
 
-text text  
 ```{r, echo=FALSE , warning=FALSE}
 t4
 ```
@@ -144,27 +138,19 @@ t4
   
 
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
-plot2
-```
-
-text text  
-
-```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
 figure2
 ```
 
-text text  
+
 
 ```{r, echo=FALSE , warning=FALSE}
 t2
 ```
 
-text text  
-
+ 
 ## Conclusion  
 
-text text  
-
+ 
 ## References
 
 Choueifaty, Y., & Coignard, Y. (2008). Toward Maximum Diversification. *The Journal of Portfolio Management*, 35(1), 40-51. doi:10.3905/jpm.2008.35.1.40

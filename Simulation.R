@@ -138,9 +138,9 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
     stockReturns = apply(stockPrices, 2, D_ret)
     stockReturns = as.timeSeries(stockReturns)
     meanReturns=as.matrix(colMeans(stockReturns))
-    meanReturns=apply(meanReturns , 2 , annualized_ret)
+    #meanReturns=apply(meanReturns , 2 , annualized_ret)
     meanReturns=as.matrix(meanReturns)
-    covariancematrix=cov(stockReturns)*tradingdays
+    covariancematrix=cov(stockReturns)
     covariancematrix= as.matrix(covariancematrix)
     meanvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo')))
     minvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='minvol',constraint='lo')))
@@ -172,33 +172,39 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
       stockPrices1 = cbind(days=as.numeric(rownames(stockPrices1)) , stockPrices1)
       
       p1 <- ggplot(data = stockReturns1 , aes(x=A))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Stock A" , x="Daily returns" , y="Frequency")+
+        labs(title = "Normal" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p2 <- ggplot(data = stockReturns1 , aes(x=B))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(B)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Stock B" , x="Daily returns" , y="Frequency")+
+        labs(title = "Exponential" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p3 <- ggplot(data = stockReturns1 , aes(x=C))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(C)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Stock C" , x="Daily returns" , y="Frequency")+
+        labs(title = "Lognormal" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p4 <- ggplot(data = stockReturns1 , aes(x=D))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(D)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Stock D" , x="Daily returns" , y="Frequency")+
+        labs(title = "U-quad" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       p5 <- ggplot(data = stockReturns1 , aes(x=E))+
-        geom_histogram(color="black" , fill="white")+
+        geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(E)), color="blue", linetype="dashed",size=1) +
-        labs(title = "Stock E" , x="Daily returns" , y="Frequency")+
+        labs(title = "Low volatility" , x="Daily returns" , y="Frequency")+
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+      
+      p6 <- ggplot(data = stockReturns1 , aes(x=E))+
+        geom_histogram(color="black" , fill="white", bins=20)+
+        geom_vline(aes(xintercept=mean(E)), color="blue", linetype="dashed",size=1) +
+        labs(title = "High volatility" , x="Daily returns" , y="Frequency")+
         theme(plot.title = element_text(face="bold" , hjust = 0.5))
       
       h2 <- ggplot()+
@@ -207,16 +213,11 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
         geom_line(data=stockPrices1 , aes(x=days ,y=C ),color = "green") +
         geom_line(data=stockPrices1 , aes(x=days ,y=D), color = "orange") +
         geom_line(data=stockPrices1 , aes(x=days ,y=E), color = "yellow") +
-        labs(title = "Prices over time" , x="Trading day" , y="Stock price")+
+        labs(title = scenario , x="Trading day" , y="Stock price")+
         theme(plot.title = element_text(face="bold", hjust = 0.5))
       
     }
   }
-  figure<-ggarrange(p1,p2,p3,p4,p5,h2,
-                    ncol=3,nrow=2)
-  figure<-annotate_figure(figure,
-                  top = text_grob(paste("Portfolio of Stocks ",scenario) , color = "black", face = "bold", size = 14),
-                  fig.lab = paste("Figure ",figindex), fig.lab.face = "bold")
-  results <- list(portfolio_returns , stockPrices, figure)
+  results <- list(portfolio_returns , stockPrices, p1 , p2  , p3 ,p4 , p5 , p6 ,h2)
   return(results)
 }
