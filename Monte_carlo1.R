@@ -81,7 +81,7 @@ figure1 <- ggarrange(a1,a2,a3,a4,a5,
                    ncol=3,nrow=2)
 
 figure1 <- annotate_figure(figure1,
-                top = text_grob("Portfolio of All Normal Stocks", color = "black", face = "bold", size = 14),
+                top = text_grob("Portfolio of All Normal Stocks", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 3", fig.lab.face = "bold")
 
 
@@ -126,8 +126,8 @@ figure2 <-ggarrange(b1,b2,b3,b4,b5,
                    ncol=3,nrow=2)
 
 figure2 <-annotate_figure(figure2,
-                top = text_grob("Portfolio of Mixed Distribution Stocks", color = "black", face = "bold", size = 14),
-                fig.lab = "Figure 4", fig.lab.face = "bold")
+                top = text_grob("Portfolio of Mixed Distribution Stocks", color = "black", face = "bold", size = 12),
+                fig.lab = "Figure 6", fig.lab.face = "bold")
 
 
 
@@ -173,8 +173,8 @@ figure3 <-ggarrange(c1,c2,c3,c4,c5,
                    ncol=3,nrow=2)
 
 figure3 <-annotate_figure(figure3,
-                top = text_grob("Portfolio of Low Volatility Stocks", color = "black", face = "bold", size = 14),
-                fig.lab = "Figure 5", fig.lab.face = "bold")
+                top = text_grob("Portfolio of Low Volatility Stocks", color = "black", face = "bold", size = 13),
+                fig.lab = "Figure 4", fig.lab.face = "bold")
 
 
 #High volatility
@@ -219,8 +219,8 @@ figure4 <-ggarrange(d1,d2,d3,d4,d5,
                    ncol=3,nrow=2)
 
 figure4 <-annotate_figure(figure4,
-                top = text_grob("Portfolio of High Volatility Stocks", color = "black", face = "bold", size = 14),
-                fig.lab = "Figure 6 ", fig.lab.face = "bold")
+                top = text_grob("Portfolio of High Volatility Stocks", color = "black", face = "bold", size = 12),
+                fig.lab = "Figure 5 ", fig.lab.face = "bold")
 
 #Confidence Intervals
 
@@ -321,7 +321,7 @@ figure <-ggarrange(p_norm,p_exp,p_log,p_uquad,p_low,p_high,
                   ncol=3,nrow=2)
   
 figure <-annotate_figure(figure,
-                top = text_grob("Stock distribution", color = "black", face = "bold", size = 14),
+                top = text_grob("Stock distribution", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 1 ", fig.lab.face = "bold")
 
 
@@ -329,5 +329,5 @@ figure_0 <-ggarrange(price_norm,price_mix,price_high,price_low,
                   ncol=2,nrow=2)
 
 figure_0 <-annotate_figure(figure_0,
-                top = text_grob("Stock movement", color = "black", face = "bold", size = 14),
+                top = text_grob("Stock movement", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 2 ", fig.lab.face = "bold")
