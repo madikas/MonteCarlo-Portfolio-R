@@ -192,6 +192,7 @@ Table 4 indicates insightful results to chose the best possible strategy. The sh
 
 ## Conclusion  
 
+The Monte Carlo simulation study shows that composition of stock portfolios does not have an impact on selection of the best portfolio optimization strategy. For all scenarios tested, the mean variance portfolio strategy is shown to consistently outperform all other portfolio optimization strategies. This optimization strategy yielded both the highest return and Sharpe ratio for all scenarios. This indicates that by using the mean variance strategy, investors can ensure they obtain the best return to risk ratio. Moreover, applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios with the exception of the high daily returns volatility. As such, utilization of portfolio optimization strategies is recommended for any portfolio manager. 
  
 ## References
 

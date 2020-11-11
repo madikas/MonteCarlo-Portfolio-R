@@ -321,7 +321,7 @@ figure <-ggarrange(p_norm,p_exp,p_log,p_uquad,p_low,p_high,
                   ncol=3,nrow=2)
   
 figure <-annotate_figure(figure,
-                top = text_grob("return distribution example for 1 simulation", color = "black", face = "bold", size = 12),
+                top = text_grob("Return distribution example for 1 simulation", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 1 ", fig.lab.face = "bold")
 
 

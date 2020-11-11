@@ -175,37 +175,43 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
         geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(A)), color="blue", linetype="dashed",size=1) +
         labs(title = "Normal" , x="Daily returns" , y="Frequency")+
-        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))+
+        theme_classic()
       
       p2 <- ggplot(data = stockReturns1 , aes(x=B))+
         geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(B)), color="blue", linetype="dashed",size=1) +
         labs(title = "Exponential" , x="Daily returns" , y="Frequency")+
-        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))+
+        theme_classic()
       
       p3 <- ggplot(data = stockReturns1 , aes(x=C))+
         geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(C)), color="blue", linetype="dashed",size=1) +
         labs(title = "Lognormal" , x="Daily returns" , y="Frequency")+
-        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))+
+        theme_classic()
       
       p4 <- ggplot(data = stockReturns1 , aes(x=D))+
         geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(D)), color="blue", linetype="dashed",size=1) +
         labs(title = "U-quad" , x="Daily returns" , y="Frequency")+
-        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))+
+        theme_classic()
       
       p5 <- ggplot(data = stockReturns1 , aes(x=E))+
         geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(E)), color="blue", linetype="dashed",size=1) +
         labs(title = "Low volatility" , x="Daily returns" , y="Frequency")+
-        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))+
+        theme_classic()
       
       p6 <- ggplot(data = stockReturns1 , aes(x=E))+
         geom_histogram(color="black" , fill="white", bins=20)+
         geom_vline(aes(xintercept=mean(E)), color="blue", linetype="dashed",size=1) +
         labs(title = "High volatility" , x="Daily returns" , y="Frequency")+
-        theme(plot.title = element_text(face="bold" , hjust = 0.5))
+        theme(plot.title = element_text(face="bold" , hjust = 0.5))+
+        theme_classic()
       
       h2 <- ggplot()+
         geom_line(data=stockPrices1 , aes(x=days ,y=A ),color = "darkred") +
