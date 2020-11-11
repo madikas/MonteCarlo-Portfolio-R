@@ -7,6 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(meassage=FALSE)
 source("Simulation.R")
 simulations = 1000
 tradingdays = 253

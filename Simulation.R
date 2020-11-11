@@ -139,6 +139,7 @@ portfolio_simulation <- function(simulations,tradingdays, scenario, figindex) {
     stockReturns = as.timeSeries(stockReturns)
     meanReturns=as.matrix(colMeans(stockReturns))
     meanReturns=apply(meanReturns , 2 , annualized_ret)
+    meanReturns=as.matrix(meanReturns)
     covariancematrix=cov(stockReturns)*tradingdays
     covariancematrix= as.matrix(covariancematrix)
     meanvar=as.matrix(optimalPortfolio(covariancematrix,meanReturns, control=list(type='mv',constraint='lo')))
