@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  10 NOV 2020 16:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  11 NOV 2020 01:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -550,13 +550,13 @@ File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box67
 ) (./Final_report.aux
 
-LaTeX Warning: Label `tab:unnamed-chunk-9' multiply defined.
+LaTeX Warning: Label `tab:setup' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-9' multiply defined.
+LaTeX Warning: Label `tab:setup' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-9' multiply defined.
+LaTeX Warning: Label `tab:setup' multiply defined.
 
 )
 \openout1 = `Final_report.aux'.
@@ -684,144 +684,165 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 83.
 (c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-05.
-(c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-111.
-(c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-<Final_report_files/figure-latex/unnamed-chunk-1-1.pdf, id=28, 469.755pt x 325.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 126.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 126.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 126.
+[1
+
+{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdfte
+x.map}]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
+14.
+(c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [2]
+<Final_report_files/figure-latex/unnamed-chunk-1-1.pdf, id=91, 469.755pt x 325.
 215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-1-1.pdf 
- used on input line 113.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[1
-
-{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdfte
-x.map}]
-<Final_report_files/figure-latex/unnamed-chunk-2-1.pdf, id=41, 469.755pt x 325.
+ used on input line 260.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[3]
+<Final_report_files/figure-latex/unnamed-chunk-2-1.pdf, id=98, 469.755pt x 325.
 215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-2-1.pdf 
- used on input line 115.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[2 <./Final_report_files/figure-latex/unnamed-chunk-1-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-3-1.pdf, id=52, 469.755pt x 325.
-215pt>
-File: Final_report_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type 
-pdf)
-<use Final_report_files/figure-latex/unnamed-chunk-3-1.pdf>
-Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-3-1.pdf 
- used on input line 129.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[3 <./Final_report_files/figure-latex/unnamed-chunk-2-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-4-1.pdf, id=64, 469.755pt x 325.
+ used on input line 264.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Final_report_files/figure-latex/unnamed-chunk-4-1.pdf, id=99, 469.755pt x 325.
 215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-4-1.pdf 
- used on input line 131.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[4 <./Final_report_files/figure-latex/unnamed-chunk-3-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-5-1.pdf, id=75, 469.755pt x 325.
-215pt>
+ used on input line 293.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[4 <./Final_report_files/figure-latex/unnamed-chunk-1-1.pdf> <./Final_report_fi
+les/figure-latex/unnamed-chunk-2-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-5-1.pdf, id=116, 469.755pt x 325
+.215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf 
- used on input line 145.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[5 <./Final_report_files/figure-latex/unnamed-chunk-4-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-6-1.pdf, id=87, 469.755pt x 325.
-215pt>
-File: Final_report_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type 
-pdf)
-<use Final_report_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-6-1.pdf 
- used on input line 147.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[6 <./Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-7-1.pdf, id=98, 469.755pt x 325.
-215pt>
+ used on input line 297.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[5pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.297 ...ure-latex/unnamed-chunk-5-1} \end{center}
+                                                   <./Final_report_files/figure
+-latex/unnamed-chunk-4-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 299--300
+
+ []
+
+<Final_report_files/figure-latex/unnamed-chunk-7-1.pdf, id=128, 469.755pt x 325
+.215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf 
- used on input line 161.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[7 <./Final_report_files/figure-latex/unnamed-chunk-6-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-8-1.pdf, id=111, 469.755pt x 325
+ used on input line 328.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[6pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.328 ...ure-latex/unnamed-chunk-7-1} \end{center}
+                                                   <./Final_report_files/figure
+-latex/unnamed-chunk-5-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-8-1.pdf, id=140, 469.755pt x 325
 .215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-8-1.pdf 
- used on input line 163.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[8 <./Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 173.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 173.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 173.
-[9pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
+ used on input line 332.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
+
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Final_report_files/figure-latex/unnamed-chunk-10-1.pdf, id=141, 469.755pt x 32
+5.215pt>
+File: Final_report_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type
+ pdf)
+<use Final_report_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-10-1.pdf
+  used on input line 361.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[7 <./Final_report_files/figure-latex/unnamed-chunk-7-1.pdf> <./Final_report_fi
+les/figure-latex/unnamed-chunk-8-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-11-1.pdf, id=160, 469.755pt x 32
+5.215pt>
+File: Final_report_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type
+ pdf)
+<use Final_report_files/figure-latex/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-11-1.pdf
+  used on input line 365.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[8pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.253 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{table.2}) has been already used, duplicate ignored
+l.365 ...re-latex/unnamed-chunk-11-1} \end{center}
+                                                   <./Final_report_files/figure
+-latex/unnamed-chunk-10-1.pdf>] [9pdfTeX warning (ext4): destination with the s
+ame identifier (name{table.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.253 \end{document}
-                     <./Final_report_files/figure-latex/unnamed-chunk-8-1.pdf>]
-[10pdfTeX warning (ext4): destination with the same identifier (name{table.3}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.253 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{table.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.253 \end{document}
-                    ] (./Final_report.aux)
+l.415 \end{document}
+                     <./Final_report_files/figure-latex/unnamed-chunk-11-1.pdf>
+] (./Final_report.aux)
 Package rerunfilecheck Info: File `Final_report.out' has not changed.
-(rerunfilecheck)             Checksum: 15A673BBE372456A9F144B885AC4F974;1735.
+(rerunfilecheck)             Checksum: 2C0733629D372B56CAED801AEDC3C93D;2767.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  12025 strings out of 481408
- 176450 string characters out of 5917651
- 471777 words of memory out of 5000000
- 28520 multiletter control sequences out of 15000+600000
- 572111 words of font info for 67 fonts, out of 8000000 for 9000
+ 176863 string characters out of 5917651
+ 467097 words of memory out of 5000000
+ 28505 multiletter control sequences out of 15000+600000
+ 579110 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 66i,9n,72p,474b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.
-enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec
-.enc}<c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/l
-mbx12.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public
-/lm/lmr10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/pu
-blic/lm/lmr17.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/type
-1/public/lm/lmtt10.pfb>
-Output written on Final_report.pdf (10 pages, 188576 bytes).
+ 66i,9n,72p,477b,396s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
+nc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1
+.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-m
+athex.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm
+/lm-rm.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/l
+m/lm-mathit.enc}<c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/
+public/lm/lmbx10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/t
+ype1/public/lm/lmbx12.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fo
+nts/type1/public/lm/lmex10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-di
+st/fonts/type1/public/lm/lmmi10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/tex
+mf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX
+/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/nabil/AppData/Roaming/Tin
+yTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/nabil/AppData/Roaming
+/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/nabil/AppData/Roam
+ing/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on Final_report.pdf (9 pages, 245077 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 240 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 161 words of extra memory for PDF output out of 10000 (max. 10000000)
 

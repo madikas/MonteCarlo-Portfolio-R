@@ -7,28 +7,29 @@ library(DescTools)
 #given different parameters(combination of distributions)
 simulations = 1000
 tradingdays = 253
+
 scenario = "allnormal"
 set.seed(123)
 portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "1")
-portfolio_returns
+plot1 <- portfolio_returns[[3]]
 allnorm_ret=na.omit(portfolio_returns[[1]])
 allnorm_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "mix"
 portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "2")
-portfolio_returns
+plot2 <- portfolio_returns[[3]]
 mix_ret=na.omit(portfolio_returns[[1]])
 mix_ret_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "low volatility"
 portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "3")
-portfolio_returns
+plot3 <- portfolio_returns[[3]]
 lowvol_ret=na.omit(portfolio_returns[[1]])
 lowvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
 scenario = "high volatility"
 portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "4")
-portfolio_returns
+plot4 <- portfolio_returns[[3]]
 highvol_ret=na.omit(portfolio_returns[[1]])
 highvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
 
@@ -261,9 +262,9 @@ t1[4:5]<-t1[4:5]*100
 t1
 
 
-t1 %>%
-  kbl(caption = "Table 1: Portfolio of All Normal Stocks") %>%
-  kable_classic(full_width = F, html_font = "Cambria")
+t1 <- t1 %>%
+  kbl(caption = "Portfolio of All Normal Stocks") %>%
+  kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 #Mixed
 t2=data.frame(rbind(mix_ret_mean[1:3],mix_ret_mean[4:6],mix_ret_mean[7:9],mix_ret_mean[10:12],mix_ret_mean[13:15]))
@@ -274,9 +275,9 @@ t2[1:2]<-t2[1:2]*100
 t2[4:5]<-t2[4:5]*100
 t2
 
-t2 %>%
-  kbl(caption = "Table 2: Portfolio of Mixed Distribution Stocks") %>%
-  kable_classic(full_width = F, html_font = "Cambria")
+t2<- t2 %>%
+  kbl(caption = "Portfolio of Mixed Distribution Stocks") %>%
+  kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 
 #Low Volatility
@@ -288,9 +289,9 @@ t3[1:2]<-t3[1:2]*100
 t3[4:5]<-t3[4:5]*100
 t3
 
-t3 %>%
-  kbl(caption = "Table 3: Portfolio of Low Volatility Stocks") %>%
-  kable_classic(full_width = F, html_font = "Cambria")
+t3<- t3 %>%
+  kbl(caption = "Portfolio of Low Volatility Stocks") %>%
+  kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 
 #High Volatility
@@ -302,6 +303,6 @@ t4[1:2]<-t4[1:2]*100
 t4[4:5]<-t4[4:5]*100
 t4
 
-t4 %>%
-  kbl(caption = "Table 4: Portfolio of High Volatility Stocks") %>%
-  kable_classic(full_width = F, html_font = "Cambria")
+t4<-t4 %>%
+  kbl(caption = "Portfolio of High Volatility Stocks") %>%
+  kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")

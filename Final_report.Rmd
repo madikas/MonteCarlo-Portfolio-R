@@ -1,318 +1,176 @@
-
 ---
-title: "Monte Carlo Simulation of Portfolio Returns for Different Optimization Strategies"
+title: "Testing Portfolio Otimization Strategies using Monte Carlo Simulation Methodology"
 authors: "Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(meassage=FALSE)
-source("Simulation.R")
+knitr::opts_chunk$set(message = FALSE)
+source("Monte_carlo1.R")
 simulations = 1000
 tradingdays = 253
 ```
 
-## Context
+## Abstract
+text text
 
-The main goal of investors when creating an asset portfolio is to obtain the most value from their constructed portfolio. A major decision in portfolio management lies in defining how to allocate funds when constructing a portfolio. Portfolio optimization is a phenomenon widely studied in finance. It consists of determining the optimal proportions of total capital invested to assign to each particular asset in the portfolio. Such a problem poses a challenge to financial investors as portfolio managers seek to define the best way to distribute capital in order to yield the most favorable portfolio returns depending on the level of risk the investor is willing to take. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets.
+## Introduction
+
+The main goal for investors when creating an asset portfolio is to obtain the most value from their constructed portfolio. A major decision in portfolio management lies in defining how to allocate funds when constructing a portfolio. Portfolio optimization is a phenomenon widely studied in finance. It consists of determining the optimal proportions of total capital to invest in each particular asset in the portfolio. Such a problem poses a challenge to financial investors as portfolio managers seek to define the best way to distribute capital in order to yield the most favorable portfolio returns depending on the level of risk an investor is willing to take. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets.
+
+## Optimization Strategies
+
+The optimal portfolio strategies examined in this paper are the mean variance, minimum variance, max diversification and max decorrelation portfolios. Each strategy imposes different assumptions and optimization goals in order to obtain the optimal weights for risky assets.
+
+###    Mean Variance
+
+The mean variance portfolio optimization theory is the most popular optimization technique utilized in finance. The goal of this strategy is to determine optimal weights while considering the trade-off between risk and return. The choice of portfolio weights is one which maximizes return while avoiding unnecessary risk(Markowitz, 1952).
+
+The objective of this optimization strategy is to maximize the ratio or mean to variance of the portfolio also known as the Sharpe ratio.
+
+Maximize Sharpe Ratio $$S=\frac{ \mu}{\sigma_{p}}$$
+
+Where $\mu$ is portfolio return and ${\sigma_{p}}$ is portfolio standard deviation
+
+###    Minimum Variance
+
+The objective of this portfolio optimization strategy is to construct a portfolio that minimizes portfolio variance. Results yield an optimized portfolio with the lowest possible volatility for a given set of risky assets.
+
+Inputs needed to construct the minimum variance portfolio are asset mean expected return, as well as an estimation of the risk and correlation of all assets in the portfolio (Markowitz,1952).
+
+Minimize portfolio variance:$$\sigma_{minvar}^2={w^T\sum w}$$
+
+Where w is a set of portfolio weights and $\sum$ is tha covariance matrix 
+
+###    Max Diversification
+
+Choueifaty and Coignard proposed another portfolio optimization strategy referred to as the maximum diversification strategy. This strategy suggests that investments produced returns that are proportional to their volatility. As such, the optimization strategy aims to maximize a metric that defines a portfolio’s degree of diversification. The result is a portfolio with assets that are minimally correlated and have lower risk levels.The metric used to measure diversification is a ratio of weighted average of asset volatility to the portfolio volatility (Clarke et al.,2012) where volatility is measured by variance.
+
+The objective of this portfolio optimization strategy is to maximize the diversification ratio.
+
+Maximize diversification ratio: $$D(P)= \frac{ w^T\sigma}{\sqrt{w^T\sum w}}$$
+
+Where w is a set of portfolio weights, $\sum$ is the covariance matrix and $\sigma$ is a vector of asset volatilities
+
+###    Max Decorrelation
+
+The max decorrelation portfolio strategy conceived by Christoffersen et al. (2010) emphasizes that correlation is the main driver of portfolio diversification benefits (Amenc et al.,2014). As such, the optimization strategy suggests solely focusing on the correlation matrix to calculate optimal weights.
+
+This strategy minimizes portfolio volatility with the assumption that all assets have identical volatility but heterogeneous correlations.
+
+Minimize portfolio variance:$$\sigma_{DC}^2 = w^TAw$$
+
+Where w is a set of portfolio weights, and A is the correlation matrix
+
+All strategies are subject to the constraint that the sum of weights is one. Note that long-only portfolio’s were considered as such all weights must be positive.
+
+## Research Question
+
+The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different distributions. Such analysis will allow financial managers to easily choose the most favorable optimization strategy to implement when performing portfolio optimization depending on the distribution of stocks held in the portfolio.
+
+## Methadology
+
+To evaluate the performance of each portfolio optimization strategy, a set of 5 stock daily returns are randomly generated for a period of 253 trading days. A set of 4 different scenarios were evaluated in order to determine what portfolio compositions perform best under each optimization strategy. The four portfolio compositions examined are as follows:
+
++ A portfolio of 5 stocks that are normally distributed 
+
++ A portfolio of 5 normally distributed stocks with low volatility
+
++ A portfolio of 5 normally distributed stocks with high volatility
+
++ A portfolio of 5 different stocks with 4 different distributions
+
+A set of daily stock returns is randomly generated for five stocks in a given portfolio. The generation of daily stock return differs depending on the specified distributions chosen from a normal distribution, lognormal distribution, exponential or u-quadratic distribution.
+
+Normal distribution, lognormal and exponential distribution were randomly generated using functions in R. While the U-quadratic distribution was derived from a variable transformation. 
+
+Once returns have been generated, the daily stock prices were derived from the returns and stored as a time series. Subsequently, daily returns are then derived using the ROC function in R for each stock in the portfolio. Once the daily returns have been derived a vector for the mean returns of each stock in the portfolio is stored. Additionally, a covariance matrix is also formulated for the given stocks in the specified portfolio and stored.
+
+Once expected returns and covariance matrix is calculated for the given portfolio optimal portfolio weights are calculated for each optimization strategy using the optimalPortfolio function in R. This function takes as an input the mean returns vector as well as the corresponding covariance matrix for the given portfolio. The output is a set of optimal weights for each optimization strategy.A Monte Carlo simulation is utilized in order to generate 1000 different sets of portfolios for each scenario. For each portfolio, a confidence interval of the expected return is estimated as well as it’s variance and Sharpe ratio in order to allow evaluation of the portfolio’s performance.The strategies are also compared to a benchmark consisting of a portfolio with equal weight in each asset.
+
+A specification of the criteria and constraints for each scenario tested is described below.  
+
+## Scenario 1: All Normally Distributed Stock Returns  
 
 
-## Scenario 1: All Normally Distributed Stock Returns
-
-```{r, echo=FALSE, warning=FALSE}
-scenario = "allnormal"
-set.seed(123)
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "1")
-portfolio_returns[[3]]
+```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
+plot1
 ```
 
-```{r, echo=FALSE, warning=FALSE}
-allnorm_ret=na.omit(portfolio_returns[[1]])
-allnorm_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
-  a1<- ggplot(allnorm_ret, aes(x=meanvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(meanvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Mean Variance",x="Return", y = "Frequency")+
-    theme_classic()
+text text
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure1
+```
   
-  a2<- ggplot(allnorm_ret, aes(x=minvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(minvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Min Variance",x="Return", y = "Frequency")+
-    theme_classic()
+text text
+```{r, echo=FALSE , warning=FALSE}
+t1
+```
   
-  a3<- ggplot(allnorm_ret, aes(x=maxdivReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdivReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Diversification",x="Return", y = "Frequency")+
-    theme_classic()
+## Scenario 2: All Normally Distributed Stock Returns with low volatility  
   
-  a4<-ggplot(allnorm_ret, aes(x=maxdecReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdecReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Decorrelation",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  a5<-ggplot(allnorm_ret, aes(x=equalweightsReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(equalweightsReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Equal Weights",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  
-  figure1<-ggarrange(a1,a2,a3,a4,a5,
-                     ncol=3,nrow=2)
-  
-  annotate_figure(figure1,
-                  top = text_grob("Portfolio of All Normal Stocks", color = "black", face = "bold", size = 14),
-                  fig.lab = "Figure 1", fig.lab.face = "bold")
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+plot3
 ```
 
-## Scenario 2: All Normally Distributed Stock Returns with low volatility
-
-```{r, echo=FALSE, warning=FALSE}
-scenario = "low volatility"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "3")
-portfolio_returns[[3]]
+text text  
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure3
 ```
 
-```{r, echo=FALSE, warning=FALSE}
-lowvol_ret=na.omit(portfolio_returns[[1]])
-lowvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
- c1<- ggplot(lowvol_ret, aes(x=meanvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(meanvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Mean Variance",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  c2<- ggplot(lowvol_ret, aes(x=minvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(minvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Min Variance",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  c3<- ggplot(lowvol_ret, aes(x=maxdivReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdivReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Diversification",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  c4<-ggplot(lowvol_ret, aes(x=maxdecReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdecReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Decorrelation",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  c5<-ggplot(lowvol_ret, aes(x=equalweightsReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(equalweightsReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Equal Weights",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  
-  figure3<-ggarrange(c1,c2,c3,c4,c5,
-                     ncol=3,nrow=2)
-  
-  annotate_figure(figure3,
-                  top = text_grob("Portfolio of Low Volatility Stocks", color = "black", face = "bold", size = 14),
-                  fig.lab = "Figure 3", fig.lab.face = "bold")
+text text  
+```{r , echo=FALSE , warning=FALSE}
+t3
 ```
 
-## Scenario 3: All Normally Distributed Stock Returns with high volatility
-
-```{r, echo=FALSE, warning=FALSE}
-scenario = "high volatility"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "4")
-portfolio_returns[[3]]
+## Scenario 3: All Normally Distributed Stock Returns with high volatility  
+text text   
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+plot4
+```
+  
+text text  
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure4
 ```
 
-```{r, echo=FALSE, warning=FALSE}
-highvol_ret=na.omit(portfolio_returns[[1]])
-highvol_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
-  d1<- ggplot(highvol_ret, aes(x=meanvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(meanvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Mean Variance",x="Return", y = "Frequency")+
-    theme_classic()
+text text  
+```{r, echo=FALSE , warning=FALSE}
+t4
+```
   
-  d2<- ggplot(highvol_ret, aes(x=minvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(minvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Min Variance",x="Return", y = "Frequency")+
-    theme_classic()
+## Scenario 4: Mixed distributed Stock Returns  
   
-  d3<- ggplot(highvol_ret, aes(x=maxdivReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdivReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Diversification",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  d4<-ggplot(highvol_ret, aes(x=maxdecReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdecReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Decorrelation",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  d5<-ggplot(highvol_ret, aes(x=equalweightsReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(equalweightsReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Equal Weights",x="Return", y = "Frequency")+
-    theme_classic()
-figure4<-ggarrange(d1,d2,d3,d4,d5,
-                   ncol=3,nrow=2)
-annotate_figure(figure4,
-                top = text_grob("Portfolio of High Volatility Stocks", color = "black", face = "bold", size = 14),
-                fig.lab = "Figure 4 ", fig.lab.face = "bold")
+
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+plot2
 ```
 
-## Scenario 4: Mixed distributed Stock Returns
+text text  
 
-```{r, echo=FALSE, warning=FALSE}
-scenario = "mix"
-portfolio_returns = portfolio_simulation(simulations, tradingdays, scenario, "2")
-portfolio_returns[[3]]
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure2
 ```
 
-```{r, echo=FALSE, warning=FALSE}
-mix_ret=na.omit(portfolio_returns[[1]])
-mix_ret_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
-   b1<- ggplot(mix_ret, aes(x=meanvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(meanvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Mean Variance",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  b2<- ggplot(mix_ret, aes(x=minvarReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(minvarReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Min Variance",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  b3<- ggplot(mix_ret, aes(x=maxdivReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdivReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Diversification",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  b4<-ggplot(mix_ret, aes(x=maxdecReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(maxdecReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Max Decorrelation",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  b5<-ggplot(mix_ret, aes(x=equalweightsReturn)) +
-    geom_histogram(fill="white", color="black", bins=20)+
-    geom_vline(aes(xintercept=mean(equalweightsReturn,na.rm=TRUE)), color="blue",
-               linetype="dashed")+
-    labs(title="Equal Weights",x="Return", y = "Frequency")+
-    theme_classic()
-  
-  
-  figure2<-ggarrange(b1,b2,b3,b4,b5,
-                     ncol=3,nrow=2)
-  
-  annotate_figure(figure2,
-                  top = text_grob("Portfolio of Mixed Distribution Stocks", color = "black", face = "bold", size = 14),
-                  fig.lab = "Figure 2", fig.lab.face = "bold")
+text text  
+
+```{r, echo=FALSE , warning=FALSE}
+t2
 ```
 
-## Comparison of Portfolio Strategies 
+text text  
 
-```{r, echo=FALSE, warning=FALSE}
-#Confidence Intervals
-  #All Normal
-  allnorm_CI=MeanCI(allnorm_ret$meanvarReturn, conf.level = 0.95,na.rm=TRUE)
-  allnorm_CI=rbind(allnorm_CI,MeanCI(allnorm_ret$minvarReturn, conf.level = 0.95,na.rm=TRUE),
- MeanCI(allnorm_ret$maxdivReturn, conf.level = 0.95,na.rm=TRUE),
- MeanCI(allnorm_ret$maxdecReturn, conf.level = 0.95,na.rm=TRUE),
- MeanCI(allnorm_ret$equalweightsReturn, conf.level = 0.95,na.rm=TRUE))
-  allnorm_CI=round(allnorm_CI,6)
-  #Mixed
-  mix_CI=MeanCI(mix_ret$meanvarReturn, conf.level = 0.95,na.rm=TRUE)
-  mix_CI=rbind(mix_CI,MeanCI(mix_ret$minvarReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(mix_ret$maxdivReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(mix_ret$maxdecReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(mix_ret$equalweightsReturn, conf.level = 0.95,na.rm=TRUE))
-  mix_CI=round(mix_CI,6)
-  
-  #Low Volatility
-  low_CI=MeanCI(lowvol_ret$meanvarReturn, conf.level = 0.95,na.rm=TRUE)
-  low_CI=rbind(low_CI,MeanCI(lowvol_ret$minvarReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(lowvol_ret$maxdivReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(lowvol_ret$maxdecReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(lowvol_ret$equalweightsReturn, conf.level = 0.95,na.rm=TRUE))
-  low_CI=round(low_CI,6)
-  
-  #High Volatility
-  high_CI=MeanCI(highvol_ret$meanvarReturn, conf.level = 0.95,na.rm=TRUE)
-  high_CI=rbind(high_CI,MeanCI(highvol_ret$minvarReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(highvol_ret$maxdivReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(highvol_ret$maxdecReturn, conf.level = 0.95,na.rm=TRUE),
-  MeanCI(highvol_ret$equalweightsReturn, conf.level = 0.95,na.rm=TRUE))
-  high_CI=round(high_CI,6)
-  
-#Tables 
-  #All norm
-  t1=data.frame(rbind(allnorm_mean[1:3],allnorm_mean[4:6],allnorm_mean[7:9],allnorm_mean[10:12],allnorm_mean[13:15]))
-  t1=cbind(t1,allnorm_CI[,2:3])
-  rownames(t1)<-c("Mean Variance","Min Variance","Max Diversification","Max Decorrelation","Equal Weights")
-  colnames(t1)<- c("Return (%)","Variance (%)","Sharpe", "Lower CI","Upper CI")
-  t1[1:2]<-t1[1:2]*100
-  t1[4:5]<-t1[4:5]*100
-  t1 %>%
-    kbl(caption = "Table 1: Portfolio of All Normal Stocks") %>%
-    kable_classic(full_width = F, html_font = "Cambria")
-  
-  #Mixed
-  t2=data.frame(rbind(mix_ret_mean[1:3],mix_ret_mean[4:6],mix_ret_mean[7:9],mix_ret_mean[10:12],mix_ret_mean[13:15]))
-  t2=cbind(t2,mix_CI[,2:3])
-  rownames(t2)<-c("Mean Variance","Min Variance","Max Diversification","Max Decorrelation","Equal Weights")
-  colnames(t2)<- c("Return (%)","Variance (%)","Sharpe", "Lower CI","Upper CI")
-  t2[1:2]<-t2[1:2]*100
-  t2[4:5]<-t2[4:5]*100
-  t2 %>%
-    kbl(caption = "Table 2: Portfolio of Mixed Distribution Stocks") %>%
-    kable_classic(full_width = F, html_font = "Cambria")
-  
-  #Low Volatility
- t3=data.frame(rbind(lowvol_mean[1:3],lowvol_mean[4:6],lowvol_mean[7:9],lowvol_mean[10:12],lowvol_mean[13:15]))
- t3=cbind(t3,low_CI[,2:3])
-  rownames(t3)<-c("Mean Variance","Min Variance","Max Diversification","Max Decorrelation","Equal Weights")
-  colnames(t3)<- c("Return (%)","Variance (%)","Sharpe", "Lower CI","Upper CI")
-  t3[1:2]<-t3[1:2]*100
-  t3[4:5]<-t3[4:5]*100
- t3 %>%
-   kbl(caption = "Table 3: Portfolio of Low Volatility Stocks") %>%
-   kable_classic(full_width = F, html_font = "Cambria")
- 
- #High Volatility
- t4=data.frame(rbind(highvol_mean[1:3],highvol_mean[4:6],highvol_mean[7:9],highvol_mean[10:12],highvol_mean[13:15]))
- t4=cbind(t4,high_CI[,2:3])
- rownames(t4)<-c("Mean Variance","Min Variance","Max Diversification","Max Decorrelation","Equal Weights")
- colnames(t4)<- c("Return (%)","Variance (%)","Sharpe", "Lower CI","Upper CI")
- t4[1:2]<-t4[1:2]*100
- t4[4:5]<-t4[4:5]*100
- t4 %>%
-   kbl(caption = "Table 4: Portfolio of High Volatility Stocks") %>%
-   kable_classic(full_width = F, html_font = "Cambria")
-```
+## Conclusion  
+
+text text  
+
+## References
+
+Choueifaty, Y., & Coignard, Y. (2008). Toward Maximum Diversification. *The Journal of Portfolio Management*, 35(1), 40-51. doi:10.3905/jpm.2008.35.1.40
+
+Clarke, R., Silva, H. D., & Thorley, S. (2010). Minimum-Variance Portfolio Composition. *The Journal of Portfolio Management*, 101116223821055. doi:10.3905/jpm.2010.2010.1.009
+
+Clarke, R., Silva, H. D., & Thorley, S. (2012). Risk Parity, Maximum Diversification, and Minimum Variance: An Analytic Perspective. *SSRN Electronic Journal*. doi:10.2139/ssrn.1977577
+
+Markowitz, H. (1952). Portfolio Selection. *The Journal of Finance*, 7(1), 77. doi:10.2307/2975974
