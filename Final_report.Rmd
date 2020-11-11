@@ -1,6 +1,6 @@
 
 ---
-title: "Monte Carlo Simulation of Portfolio Returns for Different Optimization Strategies"
+title: "Testing Portfolio Otimization Strategies using Monte Carlo Simulation Methodology"
 authors: "Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu"
 output: pdf_document
 ---
@@ -12,10 +12,63 @@ simulations = 1000
 tradingdays = 253
 ```
 
-## Context
+## Abstract
 
-The main goal of investors when creating an asset portfolio is to obtain the most value from their constructed portfolio. A major decision in portfolio management lies in defining how to allocate funds when constructing a portfolio. Portfolio optimization is a phenomenon widely studied in finance. It consists of determining the optimal proportions of total capital invested to assign to each particular asset in the portfolio. Such a problem poses a challenge to financial investors as portfolio managers seek to define the best way to distribute capital in order to yield the most favorable portfolio returns depending on the level of risk the investor is willing to take. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets.
+## Introduction
 
+The main goal for investors when creating an asset portfolio is to obtain the most value from their constructed portfolio. A major decision in portfolio management lies in defining how to allocate funds when constructing a portfolio. Portfolio optimization is a phenomenon widely studied in finance. It consists of determining the optimal proportions of total capital to invest in each particular asset in the portfolio. Such a problem poses a challenge to financial investors as portfolio managers seek to define the best way to distribute capital in order to yield the most favorable portfolio returns depending on the level of risk an investor is willing to take. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets.
+
+## Optimization Strategies
+
+The optimal portfolio strategies examined in this paper are the mean variance, minimum variance, max diversification and max decorrelation portfolios. Each strategy imposes different assumptions and optimization goals in order to obtain the optimal weights for risky assets.
+
+###    Mean Variance
+
+The mean variance portfolio optimization theory is the most popular optimization technique utilized in finance. The goal of this strategy is to determine optimal weights while considering the trade-off between risk and return. The choice of portfolio weights is one which maximizes return while avoiding unnecessary risk(Markowitz, 1952).
+
+The objective of this optimization strategy is to maximize the ratio or mean to variance of the portfolio also known as the Sharpe ratio.
+
+Maximize Sharpe Ratio $$S=\frac{ \mu}{\sigma_{p}}$$
+
+Where $\mu$ is portfolio return and ${\sigma_{p}}$ is portfolio standard deviation
+
+###    Minimum Variance
+
+The objective of this portfolio optimization strategy is to construct a portfolio that minimizes portfolio variance. Results yield an optimized portfolio with the lowest possible volatility for a given set of risky assets.
+
+Inputs needed to construct the minimum variance portfolio are asset mean expected return, as well as an estimation of the risk and correlation of all assets in the portfolio (Markowitz,1952).
+
+Minimize portfolio variance:$$\sigma_{minvar}^2={w^T\sum w}$$
+
+Where w is a set of portfolio weights and $\sum$ is tha covariance matrix 
+
+###    Max Diversification
+
+Choueifaty and Coignard proposed another portfolio optimization strategy referred to as the maximum diversification strategy. This strategy suggests that investments produced returns that are proportional to their volatility. As such, the optimization strategy aims to maximize a metric that defines a portfolio’s degree of diversification. The result is a portfolio with assets that are minimally correlated and have lower risk levels.The metric used to measure diversification is a ratio of weighted average of asset volatility to the portfolio volatility (Clarke et al.,2012) where volatility is measured by variance.
+
+The objective of this portfolio optimization strategy is to maximize the diversification ratio.
+
+Maximize diversification ratio: $$D(P)= \frac{ w^T\sigma}{\sqrt{w^T\sum w}}$$
+
+Where w is a set of portfolio weights, $\sum$ is the covariance matrix and $\sigma$ is a vector of asset volatilities
+
+###    Max Decorrelation
+
+The max decorrelation portfolio strategy conceived by Christoffersen et al. (2010) emphasizes that correlation is the main driver of portfolio diversification benefits (Amenc et al.,2014). As such, the optimization strategy suggests solely focusing on the correlation matrix to calculate optimal weights.
+
+This strategy minimizes portfolio volatility with the assumption that all assets have identical volatility but heterogeneous correlations.
+
+Minimize portfolio variance:$$\sigma_{DC}^2 = w^TAw$$
+
+Where w is a set of portfolio weights, and A is the correlation matrix
+
+All strategies are subject to the constraint that the sum of weights is one. Note that long-only portfolio’s were considered as such all weights must be positive.
+
+## Research Question
+
+The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different distributions. Such analysis will allow financial managers to easily choose the most favorable optimization strategy to implement when performing portfolio optimization depending on the distribution of stocks held in the portfolio.
+
+## Methadology
 
 ## Scenario 1: All Normally Distributed Stock Returns
 
@@ -315,3 +368,14 @@ mix_ret_mean=round(colMeans(na.omit(portfolio_returns[[1]])),6)
    kbl(caption = "Table 4: Portfolio of High Volatility Stocks") %>%
    kable_classic(full_width = F, html_font = "Cambria")
 ```
+
+## References
+
+Choueifaty, Y., & Coignard, Y. (2008). Toward Maximum Diversification. *The Journal of Portfolio Management*, 35(1), 40-51. doi:10.3905/jpm.2008.35.1.40
+
+Clarke, R., Silva, H. D., & Thorley, S. (2010). Minimum-Variance Portfolio Composition. *The Journal of Portfolio Management*, 101116223821055. doi:10.3905/jpm.2010.2010.1.009
+
+Clarke, R., Silva, H. D., & Thorley, S. (2012). Risk Parity, Maximum Diversification, and Minimum Variance: An Analytic Perspective. *SSRN Electronic Journal*. doi:10.2139/ssrn.1977577
+
+Markowitz, H. (1952). Portfolio Selection. *The Journal of Finance*, 7(1), 77. doi:10.2307/2975974
+
