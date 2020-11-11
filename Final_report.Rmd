@@ -135,19 +135,33 @@ t4
 ```
   
 ## Scenario 4: Mixed distributed Stock Returns  
-  
+
+In order to test out the robustness of the optimization strategies, a set of 5 different distributions were used for this scenario. Stock A and E had daily returns normally distributed. Their mean and variance were uniform random variables set with the same constraint as the first scenario. 
+Stock B’s returns followed an exponential distribution with the following constraints  :
+
+$$ƛ : [25 , 50]$$
+$$P_0 : [0.001 , 0.015]$$
+They were generated using the rexp() function built in the stats package in R.  
+To get stock C’s returns, a simple transformation of the normally distributed mean was performed. Therefore, it follows the same constraints as the normally distributed returns. As the previous distribution, these returns were generated using rlnmor() function.
+
+Stock D’s return follows a u-quadratic shape distribution which is typical to stock prices moving with a cyclical pattern.  This distribution is a function of parameters a and b which are respectively a lower and an upper bound on the random variable. The parameters are restricted as follows :
+
+$$a : [-0.1 ; 0.03]$$
+$$b : [0.03 ; 0.1]$$
+As for the initial price, the constraints remain the same as the general case.
 
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
 figure2
 ```
 
-
+As in the previous cases, the mean variance strategy does best at selecting weights. Figure 6 displays the return distribution of the 1000 simulations for each strategy and the vertical line indicates the mean performance. It is clear that the daily returns using the wieghts from this strategy derive to a much better average rerturns.
 
 ```{r, echo=FALSE , warning=FALSE}
 t2
 ```
 
- 
+Table 4 indicates insightful results to chose the best possible strategy. The sharpe ratio indicates that for a given risk, the mean Variance optimization yields a better return on average under the constraints of this simulation.
+
 ## Conclusion  
 
  
