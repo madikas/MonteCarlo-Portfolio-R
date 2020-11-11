@@ -81,7 +81,7 @@ figure1 <- ggarrange(a1,a2,a3,a4,a5,
                    ncol=3,nrow=2)
 
 figure1 <- annotate_figure(figure1,
-                top = text_grob("Portfolio of All Normal Stocks", color = "black", face = "bold", size = 12),
+                top = text_grob("Distribution of 1000 Portfolio returns : Normal distributions", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 3", fig.lab.face = "bold")
 
 
@@ -126,7 +126,7 @@ figure2 <-ggarrange(b1,b2,b3,b4,b5,
                    ncol=3,nrow=2)
 
 figure2 <-annotate_figure(figure2,
-                top = text_grob("Portfolio of Mixed Distribution Stocks", color = "black", face = "bold", size = 12),
+                top = text_grob("Distribution of 1000 Portfolio returns : Mixed distributions", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 6", fig.lab.face = "bold")
 
 
@@ -173,7 +173,7 @@ figure3 <-ggarrange(c1,c2,c3,c4,c5,
                    ncol=3,nrow=2)
 
 figure3 <-annotate_figure(figure3,
-                top = text_grob("Portfolio of Low Volatility Stocks", color = "black", face = "bold", size = 13),
+                top = text_grob("Distribution of 1000 Portfolio returns : Low volatility", color = "black", face = "bold", size = 13),
                 fig.lab = "Figure 4", fig.lab.face = "bold")
 
 
@@ -219,7 +219,7 @@ figure4 <-ggarrange(d1,d2,d3,d4,d5,
                    ncol=3,nrow=2)
 
 figure4 <-annotate_figure(figure4,
-                top = text_grob("Portfolio of High Volatility Stocks", color = "black", face = "bold", size = 12),
+                top = text_grob("Distribution of 1000 Portfolio returns : High volatility", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 5 ", fig.lab.face = "bold")
 
 #Confidence Intervals
@@ -270,7 +270,7 @@ t1
 
 
 t1 <- t1 %>%
-  kbl(caption = "Portfolio of All Normal Stocks") %>%
+  kbl(caption = "Summary of the portfolios performances for the 1000 simulations all normal returns") %>%
   kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 #Mixed
@@ -283,7 +283,7 @@ t2[4:5]<-t2[4:5]*100
 t2
 
 t2<- t2 %>%
-  kbl(caption = "Portfolio of Mixed Distribution Stocks") %>%
+  kbl(caption = "Summary of the portfolios performances for the 1000 simulations mixed distribution returns") %>%
   kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 
@@ -297,7 +297,7 @@ t3[4:5]<-t3[4:5]*100
 t3
 
 t3<- t3 %>%
-  kbl(caption = "Portfolio of Low Volatility Stocks") %>%
+  kbl(caption = "Summary of the portfolios performances for the 1000 simulations of low volatility returns") %>%
   kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 
@@ -311,7 +311,7 @@ t4[4:5]<-t4[4:5]*100
 t4
 
 t4<-t4 %>%
-  kbl(caption = "Portfolio of High Volatility Stocks") %>%
+  kbl(caption = "Summary of the portfolios performances for the 1000 simulations of high volatility returns") %>%
   kable_styling(full_width = F, html_font = "Cambria", latex_options = "hold_position")
 
 #Daily returns plot
@@ -321,7 +321,7 @@ figure <-ggarrange(p_norm,p_exp,p_log,p_uquad,p_low,p_high,
                   ncol=3,nrow=2)
   
 figure <-annotate_figure(figure,
-                top = text_grob("Stock distribution", color = "black", face = "bold", size = 12),
+                top = text_grob("return distribution example for 1 simulation", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 1 ", fig.lab.face = "bold")
 
 
@@ -329,5 +329,5 @@ figure_0 <-ggarrange(price_norm,price_mix,price_high,price_low,
                   ncol=2,nrow=2)
 
 figure_0 <-annotate_figure(figure_0,
-                top = text_grob("Stock movement", color = "black", face = "bold", size = 12),
+                top = text_grob("Price movement example for 1 simulation", color = "black", face = "bold", size = 12),
                 fig.lab = "Figure 2 ", fig.lab.face = "bold")

@@ -101,11 +101,12 @@ figure_0
 ```
 ## Scenario 1: All Normally Distributed Stock Returns  
 For the first scenario, the 5 stock returns were generated using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . The following constraints were added to reflect a more realistic simulation : 
+$$\mu: [-0.02 , 0.02] $$
+$$\sigma : [0.01 , 0.05]  $$
 
-	$$\mu: [-0.02 ; 0.02]$$
-	$$\sigma : [0.01 ,0 .05]$$  
 
-The initial price (P0) was also set as a random variable from a uniform distribution
+
+The initial price ($P_0$) was also set as a random variable from a uniform distribution
 
 $$P_0 : [0.001 , 15.000]$$
 
@@ -173,8 +174,8 @@ To get stock C’s returns, a simple transformation of the normally distributed 
 
 Stock D’s return follows a u-quadratic shape distribution which is typical to stock prices moving with a cyclical pattern.  This distribution is a function of parameters a and b which are respectively a lower and an upper bound on the random variable. The parameters are restricted as follows :
 
-$$a : [-0.1 ; 0.03]$$
-$$b : [0.03 ; 0.1]$$
+$$a : [-0.1 , 0.03]$$
+$$b : [0.03 , 0.1]$$
 As for the initial price, the constraints remain the same as the general case.
 
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
@@ -195,6 +196,8 @@ Table 4 indicates insightful results to chose the best possible strategy. The sh
 ## References
 
 Choueifaty, Y., & Coignard, Y. (2008). Toward Maximum Diversification. *The Journal of Portfolio Management*, 35(1), 40-51. doi:10.3905/jpm.2008.35.1.40
+
+Christoffersen, Peter and Errunza, Vihang R. and Jacobs, Kris and Jin, Xisong.(2010). *Is the Potential for International Diversification Disappearing?* SSRN: https://ssrn.com/abstract=1573345 or http://dx.doi.org/10.2139/ssrn.1573345
 
 Clarke, R., Silva, H. D., & Thorley, S. (2010). Minimum-Variance Portfolio Composition. *The Journal of Portfolio Management*, 101116223821055. doi:10.3905/jpm.2010.2010.1.009
 
