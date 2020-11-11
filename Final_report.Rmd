@@ -99,6 +99,8 @@ figure
 ```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
 figure_0
 ```
+\newpage
+
 ## Scenario 1: All Normally Distributed Stock Returns  
 For the first scenario, the 5 stock returns were generated using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . The following constraints were added to reflect a more realistic simulation : 
 $$\mu: [-0.02 , 0.02] $$
@@ -192,7 +194,9 @@ Table 4 indicates insightful results to chose the best possible strategy. The sh
 
 ## Conclusion  
 
-The Monte Carlo simulation study shows that composition of stock portfolios does not have an impact on selection of the best portfolio optimization strategy. For all scenarios tested, the mean variance portfolio strategy is shown to consistently outperform all other portfolio optimization strategies. This optimization strategy yielded both the highest return and Sharpe ratio for all scenarios. This indicates that by using the mean variance strategy, investors can ensure they obtain the best return to risk ratio. Moreover, applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios with the exception of the high daily returns volatility. As such, utilization of portfolio optimization strategies is recommended for any portfolio manager. 
+The Monte Carlo simulation study shows that composition of stock portfolios does not have an impact on selection of the best portfolio optimization strategy. For all scenarios tested, the mean variance portfolio strategy is shown to consistently outperform all other portfolio optimization strategies. This optimization strategy yielded both the highest return and Sharpe ratio for all scenarios. This indicates that by using the mean variance strategy, investors can ensure they obtain the best return to risk ratio. Moreover, applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios with the exception of the high daily returns volatility. As such, utilization of portfolio optimization strategies is recommended for any portfolio manager.
+
+\newpage
  
 ## References
 

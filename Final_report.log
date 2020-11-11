@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  11 NOV 2020 14:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  11 NOV 2020 14:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -718,68 +718,66 @@ Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-2-1.pdf
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [4 <./Final_report_files/figure-latex/unnamed-chunk-1-1.pdf> <./Final_report_fi
 les/figure-latex/unnamed-chunk-2-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-3-1.pdf, id=116, 469.755pt x 325
+<Final_report_files/figure-latex/unnamed-chunk-3-1.pdf, id=114, 469.755pt x 325
 .215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-3-1.pdf 
- used on input line 300.
+ used on input line 301.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [5pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.346 \[\sigma : [0.001 , 0.02]  \]
-                                    The initial price (P0) was also set as a <.
-/Final_report_files/figure-latex/unnamed-chunk-3-1.pdf>]
+l.346 to reflect a more realistic simulation : \[
+                                                 \mu: [-0.02 , 0.02] \] <./Fina
+l_report_files/figure-latex/unnamed-chunk-3-1.pdf>]
 <Final_report_files/figure-latex/unnamed-chunk-5-1.pdf, id=129, 469.755pt x 325
 .215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf 
- used on input line 349.
+ used on input line 350.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [6pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.395 \[\sigma : [0.05 , 0.25]  \]
-                                   The initial price (P0) was also set as a <./
-Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>]
+l.395 ... reflect a more realistic simulation : \[
+                                                  \mu: [-0.02 , 0.02]\] <./Fina
+l_report_files/figure-latex/unnamed-chunk-5-1.pdf>]
 <Final_report_files/figure-latex/unnamed-chunk-7-1.pdf, id=142, 469.755pt x 325
 .215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf 
- used on input line 398.
+ used on input line 399.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [7pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.449 
-       <./Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-9-1.pdf, id=157, 469.755pt x 325
+l.442 ...nario-4-mixed-distributed-stock-returns}}
+                                                   <./Final_report_files/figure
+-latex/unnamed-chunk-7-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-9-1.pdf, id=156, 469.755pt x 325
 .215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-9-1.pdf 
- used on input line 466.
+ used on input line 467.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 [8 <./Final_report_files/figure-latex/unnamed-chunk-9-1.pdf>] [9pdfTeX warning 
 (ext4): destination with the same identifier (name{table.4}) has been already u
 sed, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.531 \end{document}
-                    ] (./Final_report.aux)
+l.517 \newpage
+              ] [10] (./Final_report.aux)
 Package rerunfilecheck Info: File `Final_report.out' has not changed.
 (rerunfilecheck)             Checksum: 3547B481FF6940ED09B0F8DBD7E0C26D;2767.
 
@@ -787,9 +785,9 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12011 strings out of 481408
- 176093 string characters out of 5917651
- 468155 words of memory out of 5000000
+ 12012 strings out of 481408
+ 176100 string characters out of 5917651
+ 468158 words of memory out of 5000000
  28493 multiletter control sequences out of 15000+600000
  579110 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -811,10 +809,10 @@ g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/nabil/AppData/Ro
 aming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/nabil/AppData
 /Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/nabil/Ap
 pData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on Final_report.pdf (9 pages, 243261 bytes).
+Output written on Final_report.pdf (10 pages, 243384 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
- 44 named destinations out of 1000 (max. 500000)
+ 245 PDF objects out of 1000 (max. 8388607)
+ 208 compressed objects within 3 object streams
+ 45 named destinations out of 1000 (max. 500000)
  151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
