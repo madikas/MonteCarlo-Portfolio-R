@@ -100,6 +100,14 @@ figure
 figure_0
 ```
 ## Scenario 1: All Normally Distributed Stock Returns  
+For the first scenario, the 5 stock returns were generated using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . The following constraints were added to reflect a more realistic simulation : 
+
+	$$\mu: [-0.02 ; 0.02]$$
+	$$\sigma : [0.01 ,0 .05]$$  
+
+The initial price (P0) was also set as a random variable from a uniform distribution
+
+$$P_0 : [0.001 , 15.000]$$
 
 
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
@@ -111,8 +119,16 @@ figure1
 ```{r, echo=FALSE , warning=FALSE}
 t1
 ```
-  
+
+Graph results are verified with the results obtained in Table 1 which clearly shows that the mean variance portfolio outperforms all other portfolios by at least 1.3% with the confidence interval [1.29,1.36]. Mean variance portfolio has the highest Sharpe ratio as well as the highest variance. Mean variance portfolio is the only portfolio that provided positive mean stock return across the Monte Carlo simulation. Mean variance portfolio aim is to maximize the Sharpe Ratio as well as return which tries to find a positive tradeoff for a potential investor. Monte Carlo simulations for this scenario proved that this strategy holds very well for stock with normal distribution of returns. All the remaining portfolios were able to outperform the benchmark equal weights portfolio however failed to provide the positive mean return rate. 
+
 ## Scenario 2: All Normally Distributed Stock Returns with low volatility  
+
+The daily stock returns were generated for a set of 5 stocks using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . This scenario tested a set of low volatility stocks. As such, the variances were set to small values. The following constraints were added to reflect a more realistic simulation : 
+	$$\mu: [-0.02 , 0.02] $$
+	$$\sigma : [0.001 , 0.02]  $$
+The initial price (P0) was also set as a random variable from a uniform distribution
+$$P_0 : [0.001 , 15.000]$$
 
 
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
@@ -124,7 +140,16 @@ figure3
 t3
 ```
 
+Looking at results of the Monte Carlo simulation in  figure 5 it can be seen that distributions of return for each optimization strategy are normal except for the mean variance strategy. The mean variance optimization strategy yields a distribution of returns that is left skewed indicating that returns from simulations tend towards higher values. Moreover, it can be seen that the mean variance strategy outperforms all other strategies under this scenario with a return interval of [1.28,1.36] and yielding the highest Sharpe ratio of 2.08. It is clear that the mean variance optimization strategy is superior for the portfolio with low volatility stocks. It can be shown that all portfolio optimization strategies perform better than the baseline as such, in the case of low volatility stocks using any portfolio strategy is better than assigning equal weights to all assets.
+
 ## Scenario 3: All Normally Distributed Stock Returns with high volatility  
+
+This scenario tested a set of highly volatile stocks. The daily stock returns were generated for a set of 5 stocks using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . As such, the variances were set to inflated values. The following constraints were added to reflect a more realistic simulation : 
+	$$\mu: [-0.02 , 0.02]$$
+	$$\sigma : [0.05 , 0.25]  $$
+The initial price (P0) was also set as a random variable from a uniform distribution
+$$P_0 : [0.001 , 15.000]$$
+
 
 ```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
 figure4
@@ -133,13 +158,15 @@ figure4
 ```{r, echo=FALSE , warning=FALSE}
 t4
 ```
-  
+
+As can be seen in figure 6 results show that distributions for each optimization strategy are normal. The strategy that outperforms all others is the mean variance strategy with a confidence interval of [1.46,1.57] for portfolio returns. The performance of the mean variance optimization strategy exceeds others immensely. The strategy yields the highest portfolio return and Sharpe ratio. It can be seen that the volatility of the portfolio is high, which is normal considering that this scenario consisted of highly volatile stocks. The result of having highly volatile stocks is a lower sharpe ratio compared to scenario 1 and 2. This indicates that investors will obtain a smaller amount of return for the high level of risk they are taking. It can be shown that all portfolio optimization strategies perform better than the baseline except for the max decorrelation strategy which produces a Sharpe ratio that is smaller than that of the equal weights portfolio. As such, in the case of a portfolio of highly volatile stocks, investors should avoid utilization of the max decorrelation strategy as it is the worst performing. 
+
 ## Scenario 4: Mixed distributed Stock Returns  
 
 In order to test out the robustness of the optimization strategies, a set of 5 different distributions were used for this scenario. Stock A and E had daily returns normally distributed. Their mean and variance were uniform random variables set with the same constraint as the first scenario. 
 Stock B’s returns followed an exponential distribution with the following constraints  :
 
-$$ƛ : [25 , 50]$$
+$$\lambda : [25 , 50]$$
 $$P_0 : [0.001 , 0.015]$$
 They were generated using the rexp() function built in the stats package in R.  
 To get stock C’s returns, a simple transformation of the normally distributed mean was performed. Therefore, it follows the same constraints as the normally distributed returns. As the previous distribution, these returns were generated using rlnmor() function.
@@ -174,3 +201,5 @@ Clarke, R., Silva, H. D., & Thorley, S. (2010). Minimum-Variance Portfolio Compo
 Clarke, R., Silva, H. D., & Thorley, S. (2012). Risk Parity, Maximum Diversification, and Minimum Variance: An Analytic Perspective. *SSRN Electronic Journal*. doi:10.2139/ssrn.1977577
 
 Markowitz, H. (1952). Portfolio Selection. *The Journal of Finance*, 7(1), 77. doi:10.2307/2975974
+
+Christoffersen, Peter and Errunza, Vihang R. and Jacobs, Kris and Jin, Xisong.(2010). *Is the Potential for International Diversification Disappearing?* SSRN: https://ssrn.com/abstract=1573345 or http://dx.doi.org/10.2139/ssrn.1573345

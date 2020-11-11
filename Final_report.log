@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  11 NOV 2020 12:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  11 NOV 2020 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,67 +716,74 @@ pdf)
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-2-1.pdf 
  used on input line 284.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
-<Final_report_files/figure-latex/unnamed-chunk-3-1.pdf, id=98, 469.755pt x 325.
-215pt>
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+95.
+(c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [4 <./Final_report_files/figure-latex/unnamed-chunk-1-1.pdf> <./Final_report_
+files/figure-latex/unnamed-chunk-2-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-3-1.pdf, id=116, 469.755pt x 325
+.215pt>
 File: Final_report_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type 
 pdf)
 <use Final_report_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-3-1.pdf 
- used on input line 290.
-(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
-[4 <./Final_report_files/figure-latex/unnamed-chunk-1-1.pdf> <./Final_report_fi
-les/figure-latex/unnamed-chunk-2-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-5-1.pdf, id=116, 469.755pt x 325
-.215pt>
-File: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type 
-pdf)
-<use Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>
-Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf 
- used on input line 317.
+ used on input line 305.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [5pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.317 ...ure-latex/unnamed-chunk-5-1} \end{center}
-                                                   <./Final_report_files/figure
--latex/unnamed-chunk-3-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-7-1.pdf, id=129, 469.755pt x 325
+l.351 \[\sigma : [0.001 , 0.02]  \]
+                                    The initial price (P0) was also set as a <.
+/Final_report_files/figure-latex/unnamed-chunk-3-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-5-1.pdf, id=130, 469.755pt x 325
 .215pt>
-File: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type 
+File: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type 
 pdf)
-<use Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf 
- used on input line 344.
+<use Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-5-1.pdf 
+ used on input line 354.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [6pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.344 ...ure-latex/unnamed-chunk-7-1} \end{center}
-                                                   <./Final_report_files/figure
--latex/unnamed-chunk-5-1.pdf>]
-<Final_report_files/figure-latex/unnamed-chunk-9-1.pdf, id=142, 469.755pt x 325
+l.400 \[\sigma : [0.05 , 0.25]  \]
+                                   The initial price (P0) was also set as a <./
+Final_report_files/figure-latex/unnamed-chunk-5-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-7-1.pdf, id=143, 469.755pt x 325
 .215pt>
-File: Final_report_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type 
+File: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type 
 pdf)
-<use Final_report_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-9-1.pdf 
- used on input line 371.
+<use Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>
+Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-7-1.pdf 
+ used on input line 403.
 (pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
 [7pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.371 ...ure-latex/unnamed-chunk-9-1} \end{center}
-                                                   <./Final_report_files/figure
--latex/unnamed-chunk-7-1.pdf>] [8pdfTeX warning (ext4): destination with the sa
-me identifier (name{table.4}) has been already used, duplicate ignored
+l.454 
+       <./Final_report_files/figure-latex/unnamed-chunk-7-1.pdf>]
+<Final_report_files/figure-latex/unnamed-chunk-9-1.pdf, id=158, 469.755pt x 325
+.215pt>
+File: Final_report_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type 
+pdf)
+<use Final_report_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: Final_report_files/figure-latex/unnamed-chunk-9-1.pdf 
+ used on input line 471.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8 <./Final_report_files/figure-latex/unnamed-chunk-9-1.pdf>] [9pdfTeX warning 
+(ext4): destination with the same identifier (name{table.4}) has been already u
+sed, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.415 \end{document}
-                     <./Final_report_files/figure-latex/unnamed-chunk-9-1.pdf>]
-(./Final_report.aux)
+l.531 \end{document}
+                    ] (./Final_report.aux)
 Package rerunfilecheck Info: File `Final_report.out' has not changed.
 (rerunfilecheck)             Checksum: 3547B481FF6940ED09B0F8DBD7E0C26D;2767.
 
@@ -784,32 +791,35 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12010 strings out of 481408
- 176087 string characters out of 5917651
+ 12053 strings out of 481408
+ 176786 string characters out of 5917651
  468103 words of memory out of 5000000
- 28493 multiletter control sequences out of 15000+600000
- 579110 words of font info for 68 fonts, out of 8000000 for 9000
+ 28531 multiletter control sequences out of 15000+600000
+ 579429 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 66i,9n,72p,477b,396s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,9n,72p,477b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
-nc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1
-.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-m
-athex.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm
-/lm-rm.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/l
-m/lm-mathit.enc}<c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/
-public/lm/lmbx10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/t
-ype1/public/lm/lmbx12.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fo
-nts/type1/public/lm/lmex10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-di
-st/fonts/type1/public/lm/lmmi10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/tex
-mf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX
-/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/nabil/AppData/Roaming/Tin
-yTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/nabil/AppData/Roaming
-/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/nabil/AppData/Roam
-ing/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Final_report.pdf (8 pages, 228854 bytes).
+nc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mat
+hsy.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/l
+m-ts1.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm
+/lm-mathex.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvi
+ps/lm/lm-rm.enc}{c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dv
+ips/lm/lm-mathit.enc}<c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fonts/t
+ype1/public/lm/lmbx10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-dist/fo
+nts/type1/public/lm/lmbx12.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/texmf-di
+st/fonts/type1/public/lm/lmex10.pfb><c:/Users/nabil/AppData/Roaming/TinyTeX/tex
+mf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/nabil/AppData/Roaming/TinyTe
+X/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/nabil/AppData/Roaming/Ti
+nyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/nabil/AppData/Roamin
+g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/nabil/AppData/Ro
+aming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/nabil/AppData
+/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/nabil/Ap
+pData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/nab
+il/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Final_report.pdf (9 pages, 265095 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
+ 242 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
  151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
