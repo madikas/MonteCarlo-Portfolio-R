@@ -1,0 +1,213 @@
+---
+title: "Testing Portfolio Optimization Strategies using Monte Carlo Simulation Methodology"
+authors: "Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+source("Monte_carlo1.R")
+simulations = 1000
+tradingdays = 253
+```
+
+## Abstract
+
+Portfolio optimization consists of determining the optimal proportions of total capital to invest in each particular asset in the portfolio. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets. The optimal portfolio strategies examined in this paper are the mean variance, minimum variance, max diversification and max decorrelation portfolios. The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different daily return distributions. The portfolio scenarios were as follows: a portfolio of 5 stocks that are normally distributed, a portfolio of 5 normally distributed stocks with low volatility, a portfolio of 5 normally distributed stocks with high volatility and a portfolio of 5 different stocks with 4 different distributions. First, yearly stock returns are generated for each stock depending on the specified distribution given a set of constraints. Subsequently,  mean return and covariance matrix are generated and stored for each portfolio. A Monte Carlo simulation is utilized in order to generate 1000 different sets of portfolios for each scenario. In order to evaluate the portfolio’s performance, a confidence interval of the expected return is estimated as well as it’s variance and Sharpe ratio. Based on Monte Carlo simulations, the mean variance portfolio strategy consistently outperformed the remaining strategies under the constraints set in this study. Applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios but the high daily returns volatility.
+
+## Introduction
+
+The main goal for investors when creating an asset portfolio is to obtain the most value from their constructed portfolio. A major decision in portfolio management lies in defining how to allocate funds when constructing a portfolio. Portfolio optimization is a phenomenon widely studied in finance. It consists of determining the optimal proportions of total capital to invest in each particular asset in the portfolio. Such a problem poses a challenge to financial investors as portfolio managers seek to define the best way to distribute capital in order to yield the most favorable portfolio returns depending on the level of risk an investor is willing to take. Many different strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for a given set of risky assets.
+
+## Optimization Strategies
+
+The optimal portfolio strategies examined in this paper are the mean variance, minimum variance, max diversification and max decorrelation portfolios. Each strategy imposes different assumptions and optimization goals in order to obtain the optimal weights for risky assets.
+
+###    Mean Variance
+
+The mean variance portfolio optimization theory is the most popular optimization technique utilized in finance. The goal of this strategy is to determine optimal weights while considering the trade-off between risk and return. The choice of portfolio weights is one which maximizes return while avoiding unnecessary risk(Markowitz, 1952).
+
+The objective of this optimization strategy is to maximize the ratio or mean to variance of the portfolio also known as the Sharpe ratio.
+
+Maximize Sharpe Ratio $$S=\frac{ \mu}{\sigma_{p}}$$
+
+Where $\mu$ is portfolio return and ${\sigma_{p}}$ is portfolio standard deviation
+
+###    Minimum Variance
+
+The objective of this portfolio optimization strategy is to construct a portfolio that minimizes portfolio variance. Results yield an optimized portfolio with the lowest possible volatility for a given set of risky assets.
+
+Inputs needed to construct the minimum variance portfolio are asset mean expected return, as well as an estimation of the risk and correlation of all assets in the portfolio (Markowitz,1952).
+
+Minimize portfolio variance:$$\sigma_{minvar}^2={w^T\sum w}$$
+
+Where w is a set of portfolio weights and $\sum$ is tha covariance matrix 
+
+###    Max Diversification
+
+Choueifaty and Coignard proposed another portfolio optimization strategy referred to as the maximum diversification strategy. This strategy suggests that investments produced returns that are proportional to their volatility. As such, the optimization strategy aims to maximize a metric that defines a portfolio’s degree of diversification. The result is a portfolio with assets that are minimally correlated and have lower risk levels.The metric used to measure diversification is a ratio of weighted average of asset volatility to the portfolio volatility (Clarke et al.,2012) where volatility is measured by variance.
+
+The objective of this portfolio optimization strategy is to maximize the diversification ratio.
+
+Maximize diversification ratio: $$D(P)= \frac{ w^T\sigma}{\sqrt{w^T\sum w}}$$
+
+Where w is a set of portfolio weights, $\sum$ is the covariance matrix and $\sigma$ is a vector of asset volatilities
+
+###    Max Decorrelation
+
+The max decorrelation portfolio strategy conceived by Christoffersen et al. (2010) emphasizes that correlation is the main driver of portfolio diversification benefits (Amenc et al.,2014). As such, the optimization strategy suggests solely focusing on the correlation matrix to calculate optimal weights.
+
+This strategy minimizes portfolio volatility with the assumption that all assets have identical volatility but heterogeneous correlations.
+
+Minimize portfolio variance:$$\sigma_{DC}^2 = w^TAw$$
+
+Where w is a set of portfolio weights, and A is the correlation matrix
+
+All strategies are subject to the constraint that the sum of weights is one. Note that long-only portfolio’s were considered as such all weights must be positive.
+
+## Research Question
+
+The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different distributions. Such analysis will allow financial managers to easily choose the most favorable optimization strategy to implement when performing portfolio optimization depending on the distribution of stocks held in the portfolio.
+
+## Methodology
+
+To evaluate the performance of each portfolio optimization strategy, a set of 5 stock daily returns are randomly generated for a period of 253 trading days. A set of 4 different scenarios were evaluated in order to determine what portfolio compositions perform best under each optimization strategy. The four portfolio compositions examined are as follows:
+
++ A portfolio of 5 stocks that are normally distributed 
+
++ A portfolio of 5 normally distributed stocks with low volatility
+
++ A portfolio of 5 normally distributed stocks with high volatility
+
++ A portfolio of 5 different stocks with 4 different distributions
+
+A set of daily stock returns is randomly generated for five stocks in a given portfolio. The generation of daily stock return differs depending on the specified distributions chosen from a normal distribution, lognormal distribution, exponential or u-quadratic distribution.
+
+Normal distribution, lognormal and exponential distribution were randomly generated using functions in R. While the U-quadratic distribution was derived from a variable transformation. 
+
+Once returns have been generated, the daily stock prices were derived from the returns and stored as a time series. Subsequently, daily returns are then derived using the ROC function in R for each stock in the portfolio. Once the daily returns have been derived a vector for the mean returns of each stock in the portfolio is stored. Additionally, a covariance matrix is also formulated for the given stocks in the specified portfolio and stored.
+
+Once expected returns and covariance matrix is calculated for the given portfolio optimal portfolio weights are calculated for each optimization strategy using the optimalPortfolio function in R. This function takes as an input the mean returns vector as well as the corresponding covariance matrix for the given portfolio. The output is a set of optimal weights for each optimization strategy.A Monte Carlo simulation is utilized in order to generate 1000 different sets of portfolios for each scenario. For each portfolio, a confidence interval of the expected return is estimated as well as it’s variance and Sharpe ratio in order to allow evaluation of the portfolio’s performance.The strategies are also compared to a benchmark consisting of a portfolio with equal weight in each asset.
+
+A specification of the criteria and constraints for each scenario tested is described below.  
+
+```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
+figure
+```
+
+```{r, echo=FALSE, warning=FALSE , out.width="80%" , out.height="60%" , fig.align='center'}
+figure_0
+```
+\newpage
+
+## Scenario 1: All Normally Distributed Stock Returns  
+For the first scenario, the 5 stock returns were generated using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . The following constraints were added to reflect a more realistic simulation : 
+$$\mu: [-0.02 , 0.02] $$
+$$\sigma : [0.01 , 0.05]  $$
+
+
+
+The initial price ($P_0$) was also set as a random variable from a uniform distribution
+
+$$P_0 : [0.001 , 15.000]$$
+
+
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure1
+
+```
+  
+
+```{r, echo=FALSE , warning=FALSE}
+t1
+```
+
+Graph results are verified with the results obtained in Table 1 which clearly shows that the mean variance portfolio outperforms all other portfolios by at least 1.3% with the confidence interval [1.29,1.36]. Mean variance portfolio has the highest Sharpe ratio as well as the highest variance. Mean variance portfolio is the only portfolio that provided positive mean stock return across the Monte Carlo simulation. Mean variance portfolio aim is to maximize the Sharpe Ratio as well as return which tries to find a positive tradeoff for a potential investor. Monte Carlo simulations for this scenario proved that this strategy holds very well for stock with normal distribution of returns. All the remaining portfolios were able to outperform the benchmark equal weights portfolio however failed to provide the positive mean return rate. 
+
+## Scenario 2: All Normally Distributed Stock Returns with low volatility  
+
+The daily stock returns were generated for a set of 5 stocks using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . This scenario tested a set of low volatility stocks. As such, the variances were set to small values. The following constraints were added to reflect a more realistic simulation : 
+	$$\mu: [-0.02 , 0.02] $$
+	$$\sigma : [0.001 , 0.02]  $$
+The initial price (P0) was also set as a random variable from a uniform distribution
+$$P_0 : [0.001 , 15.000]$$
+
+
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure3
+```
+
+ 
+```{r , echo=FALSE , warning=FALSE}
+t3
+```
+
+Looking at results of the Monte Carlo simulation in  figure 5 it can be seen that distributions of return for each optimization strategy are normal except for the mean variance strategy. The mean variance optimization strategy yields a distribution of returns that is left skewed indicating that returns from simulations tend towards higher values. Moreover, it can be seen that the mean variance strategy outperforms all other strategies under this scenario with a return interval of [1.28,1.36] and yielding the highest Sharpe ratio of 2.08. It is clear that the mean variance optimization strategy is superior for the portfolio with low volatility stocks. It can be shown that all portfolio optimization strategies perform better than the baseline as such, in the case of low volatility stocks using any portfolio strategy is better than assigning equal weights to all assets.
+
+## Scenario 3: All Normally Distributed Stock Returns with high volatility  
+
+This scenario tested a set of highly volatile stocks. The daily stock returns were generated for a set of 5 stocks using a normal distribution with randomized parameters  $\mu$ and $\sigma$ . As such, the variances were set to inflated values. The following constraints were added to reflect a more realistic simulation : 
+	$$\mu: [-0.02 , 0.02]$$
+	$$\sigma : [0.05 , 0.25]  $$
+The initial price (P0) was also set as a random variable from a uniform distribution
+$$P_0 : [0.001 , 15.000]$$
+
+
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure4
+```
+
+```{r, echo=FALSE , warning=FALSE}
+t4
+```
+
+As can be seen in figure 6 results show that distributions for each optimization strategy are normal. The strategy that outperforms all others is the mean variance strategy with a confidence interval of [1.46,1.57] for portfolio returns. The performance of the mean variance optimization strategy exceeds others immensely. The strategy yields the highest portfolio return and Sharpe ratio. It can be seen that the volatility of the portfolio is high, which is normal considering that this scenario consisted of highly volatile stocks. The result of having highly volatile stocks is a lower sharpe ratio compared to scenario 1 and 2. This indicates that investors will obtain a smaller amount of return for the high level of risk they are taking. It can be shown that all portfolio optimization strategies perform better than the baseline except for the max decorrelation strategy which produces a Sharpe ratio that is smaller than that of the equal weights portfolio. As such, in the case of a portfolio of highly volatile stocks, investors should avoid utilization of the max decorrelation strategy as it is the worst performing. 
+
+## Scenario 4: Mixed distributed Stock Returns  
+
+In order to test out the robustness of the optimization strategies, a set of 5 different distributions were used for this scenario. Stock A and E had daily returns normally distributed. Their mean and variance were uniform random variables set with the same constraint as the first scenario. 
+Stock B’s returns followed an exponential distribution with the following constraints  :
+
+$$\lambda : [25 , 50]$$
+$$P_0 : [0.001 , 0.015]$$
+They were generated using the rexp() function built in the stats package in R.  
+To get stock C’s returns, a simple transformation of the normally distributed mean was performed. Therefore, it follows the same constraints as the normally distributed returns. As the previous distribution, these returns were generated using rlnmor() function.
+
+Stock D’s return follows a u-quadratic shape distribution which is typical to stock prices moving with a cyclical pattern.  This distribution is a function of parameters a and b which are respectively a lower and an upper bound on the random variable. The parameters are restricted as follows :
+
+$$a : [-0.1 , 0.03]$$
+$$b : [0.03 , 0.1]$$
+As for the initial price, the constraints remain the same as the general case.
+
+```{r, echo=FALSE, warning=FALSE, out.width="80%" , out.height="60%", fig.align='center'}
+figure2
+```
+
+As in the previous cases, the mean variance strategy does best at selecting weights. Figure 6 displays the return distribution of the 1000 simulations for each strategy and the vertical line indicates the mean performance. It is clear that the daily returns using the wieghts from this strategy derive to a much better average rerturns.
+
+```{r, echo=FALSE , warning=FALSE}
+t2
+```
+
+Table 4 indicates insightful results to chose the best possible strategy. The sharpe ratio indicates that for a given risk, the mean Variance optimization yields a better return on average under the constraints of this simulation.
+
+## Conclusion  
+
+The Monte Carlo simulation study shows that composition of stock portfolios does not have an impact on selection of the best portfolio optimization strategy. For all scenarios tested, the mean variance portfolio strategy is shown to consistently outperform all other portfolio optimization strategies. This optimization strategy yielded both the highest return and Sharpe ratio for all scenarios. This indicates that by using the mean variance strategy, investors can ensure they obtain the best return to risk ratio. Moreover, applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios with the exception of the high daily returns volatility. As such, utilization of portfolio optimization strategies is recommended for any portfolio manager.
+
+\newpage
+ 
+## References
+
+Choueifaty, Y., & Coignard, Y. (2008). Toward Maximum Diversification. *The Journal of Portfolio Management*, 35(1), 40-51. doi:10.3905/jpm.2008.35.1.40
+
+Christoffersen, Peter and Errunza, Vihang R. and Jacobs, Kris and Jin, Xisong.(2010). *Is the Potential for International Diversification Disappearing?* SSRN: https://ssrn.com/abstract=1573345 or http://dx.doi.org/10.2139/ssrn.1573345
+
+Clarke, R., Silva, H. D., & Thorley, S. (2010). Minimum-Variance Portfolio Composition. *The Journal of Portfolio Management*, 101116223821055. doi:10.3905/jpm.2010.2010.1.009
+
+Clarke, R., Silva, H. D., & Thorley, S. (2012). Risk Parity, Maximum Diversification, and Minimum Variance: An Analytic Perspective. *SSRN Electronic Journal*. doi:10.2139/ssrn.1977577
+
+Markowitz, H. (1952). Portfolio Selection. *The Journal of Finance*, 7(1), 77. doi:10.2307/2975974
+
+Christoffersen, Peter and Errunza, Vihang R. and Jacobs, Kris and Jin, Xisong.(2010). *Is the Potential for International Diversification Disappearing?* SSRN: https://ssrn.com/abstract=1573345 or http://dx.doi.org/10.2139/ssrn.1573345
