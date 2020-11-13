@@ -1,5 +1,9 @@
+# Testing Portfolio Optimization Strategies using Monte Carlo Simulation Methodology
+HEC Montreal Statistical Learning MATH 60603A
 
-# Abstract
+Authors: Madi Kassymbekov; Abderezzak Amimer; Stephanie Vu
+
+## Abstract
 Portfolio optimization consists of determining the optimal proportions of total capital to invest in each particular asset in the portfolio. Many different 
 strategies exist to define optimal weights in a portfolio however, it remains hard for portfolio managers to decide which optimization strategy is best suited for 
 a given set of risky assets. The optimal portfolio strategies examined in this paper are the mean variance, minimum variance, max diversification and 
@@ -14,10 +18,10 @@ as it’s variance and Sharpe ratio. Based on Monte Carlo simulations, the mean 
 the constraints set in this study. Applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios but the high
 daily returns volatility.
 
-# Research Question
+## Research Question
 The goal of this experiment is to determine what investment strategy performs best depending on the composition of stocks in a given portfolio. Four different scenarios are tested where portfolios are composed of stocks with different distributions. Such analysis will allow financial managers to easily choose the most favorable optimization strategy to implement when performing portfolio optimization depending on the distribution of stocks held in the portfolio.
 
-# Methodology
+## Methodology
 
 To evaluate the performance of each portfolio optimization strategy, a set of 5 stock daily returns are randomly generated for a period of 253 trading days. A set of 4 different scenarios were evaluated in order to determine what portfolio compositions perform best under each optimization strategy. The four portfolio compositions examined are as follows:
 
@@ -37,11 +41,11 @@ Once returns have been generated, the daily stock prices were derived from the r
 
 Once expected returns and covariance matrix is calculated for the given portfolio optimal portfolio weights are calculated for each optimization strategy using the optimalPortfolio function in R. This function takes as an input the mean returns vector as well as the corresponding covariance matrix for the given portfolio. The output is a set of optimal weights for each optimization strategy.A Monte Carlo simulation is utilized in order to generate 1000 different sets of portfolios for each scenario. For each portfolio, a confidence interval of the expected return is estimated as well as it’s variance and Sharpe ratio in order to allow evaluation of the portfolio’s performance.The strategies are also compared to a benchmark consisting of a portfolio with equal weight in each asset.
 
-# Conclusion
+## Conclusion
 
 The Monte Carlo simulation study shows that composition of stock portfolios does not have an impact on selection of the best portfolio optimization strategy. For all scenarios tested, the mean variance portfolio strategy is shown to consistently outperform all other portfolio optimization strategies. This optimization strategy yielded both the highest return and Sharpe ratio for all scenarios. This indicates that by using the mean variance strategy, investors can ensure they obtain the best return to risk ratio. Moreover, applying an optimization strategy is found to be superior to equally distributing portfolio weights in all scenarios with the exception of the high daily returns volatility. As such, utilization of portfolio optimization strategies is recommended for any portfolio manager.
 
-# References
+## References
 
 Choueifaty, Y., & Coignard, Y. (2008). Toward Maximum Diversification. *The Journal of Portfolio Management*, 35(1), 40-51. doi:10.3905/jpm.2008.35.1.40
 
